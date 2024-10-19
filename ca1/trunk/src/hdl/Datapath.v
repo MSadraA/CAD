@@ -5,14 +5,14 @@ module Datapath(clk, rst, start , ld1 , ld2 , ld3 , ld4 , ld5, Inc1 , Inc2 , Inc
     output countdone1 , countdone2 , carry2 , carry3 , carry4;
 
     up_down_counter_3_bit upcounter1();
-    shift_register_16bit Shreg1();
+    shift_register_16bit Shreg1(.clk(clk) , .rst(rst) , .load(ld1) , .shift_left(Shle1) , .data_in() , .q());
     up_down_counter_3_bit upcounter2();
-    subtractor_3bit Sub1();
-    shift_register_16bit Shreg2();
+    subtractor_3bit Sub1(.() , .() , .());
+    shift_register_16bit Shreg2(.(clk) , .(rst) , .(ld2) , .(Shle2) , .() , .());
     up_down_counter_4_bit upcounter3();
-    subtractor_3bit Sub2();
-    Mult_8_bit Mult();
-    shift_register_32bit Shreg3();
+    subtractor_3bit Sub2(.() , .() , .());
+    Mult_8_bit Mult(.() , .() , .());
+    shift_register_32bit Shreg3(.(clk) , .(rst) , .(ld4) , .(Shle1) , .() , .());
     up_down_counter_3_bit upcounter4();
     
     
