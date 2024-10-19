@@ -1,14 +1,26 @@
-module Up_counter_4bit
-(
-    input clk,
-    input rst,
-    input inc,
-    output reg [3:0] par_out
+module up_counter_3_bit(
+ out      ,  // Output of the counter
+ ld,     //load signal
+ inc  ,  // up_down control for counter
+ clk      ,  // clock input
+ data     ,  // Data to load
+ reset       // reset input
 );
-    always @(posedge clk) begin
-        if(rst)
-            par_out <= 4'b0;
-        else if(inc)
-            par_out <= par_out + 1'b1
+ //----------Output Ports--------------
+  output [3:0] out;
+  //------------Input Ports-------------- 
+  input [3:0] data;
+  input inc, clk, reset ,  ld;
+  //------------Internal Variables--------
+  reg [3:0] out;
+  //-------------Code Starts Here-------
+  always @(posedge clk)
+  begin
+    if (reset) begin // active high reset
+      out <= 3'b0 ;
+    end 
+    else if (inc) begin
+      out <= out + 1;
     end
+  end
 endmodule

@@ -10,7 +10,7 @@ module up_counter_3_bit(
   output [2:0] out;
   //------------Input Ports-------------- 
   input [2:0] data;
-  input inc, clk, reset ld;
+  input inc, clk, reset ,  ld;
   //------------Internal Variables--------
   reg [2:0] out;
   //-------------Code Starts Here-------
