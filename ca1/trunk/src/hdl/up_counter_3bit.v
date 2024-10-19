@@ -1,41 +1,31 @@
-module up_counter_3_bit(
- out      ,  // Output of the counter
- carry ,
- ld,     //load signal
- inc  ,  // up_down control for counter
- clk      ,  // clock input
- data     ,  // Data to load
- reset       // reset input
+module up_counter_3bit(
+ out,  // Output of the counter
+ carry,
+ ld,    //load signal
+ inc,   // up_down control for counter
+ clk,   // clock input
+ data,  // Data to load
+ reset  // reset input
 );
  //----------Output Ports--------------
-  output [2:0] out;
-  output carry;
+  output reg [2:0] out;
+  output reg carry;
   //------------Input Ports-------------- 
   input [2:0] data;
-  input inc, clk, reset ,  ld;
-  //------------Internal Variables--------
-  reg [2:0] out;
-  reg carry;
+  input inc, clk, reset , ld;
   //-------------Code Starts Here-------
   always @(posedge clk)
   begin
     if (reset) begin // active high reset
       out <= 3'b0;
-      carry <= 1'b0;
     end
     else if (ld) begin  // Load data
       out <= data;
-      carry <= 1'b0;
     end
     else if (inc) begin
-      if (out == 3'b111) begin
-        out <= 3'b000;   // Reset counter after it reaches max value
-        carry <= 1'b1;   // Set carry when overflow happens
+      out <= out + 1'b1;
       end
-      else begin
-        out <= out + 1;
-        carry <= 1'b0;
-      end
-    end
   end
+  
+  assign carry = (out == 3'b111) ? 1'b1 : 1'b0;
 endmodule
