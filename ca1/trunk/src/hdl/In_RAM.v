@@ -1,17 +1,14 @@
 module ram(
 	    input clk,
-	    input write_enable,
-	    input [3:0]address,
-	    input [15:0]data_in,
+	    input [4:0]address,
 	    output reg [15:0]data_out
 	);
 
-	reg [7:0]ram_block[0:15];
+	reg [15:0]ram_block[0:15];
+
+	initial $readmemb("data_in.mem", ram_block);
 
 	always @(posedge clk) begin
-	        if(write_enable)
-	            ram_block[address] <= data_in;
-	        else
-	            data_out <= ram_block[address];
+		data_out <= ram_block[address]
 	end
 endmodule
