@@ -36,7 +36,7 @@ module datapath(
     );
 
     //input_ram
-    wire in_ram_out;
+    wire [15:0] in_ram_out;
     in_ram input_ram
     (
         .clk(clk),
@@ -78,7 +78,7 @@ module datapath(
         .diff(sub_out1)
     );
 
-    up_counter_3_bit upcounter2
+    up_counter_3bit upcounter2
     (
     .out(Pout2),
     .ld(ld5), 
@@ -102,7 +102,7 @@ module datapath(
         .diff(sub_out2)
     );
 
-    up_counter_3_bit upcounter3
+    up_counter_3bit upcounter3
     (
         .out(Pout1), 
         .ld(ld3), 
@@ -134,15 +134,16 @@ module datapath(
     );
 
     //out_ram_address
-    wire out_add;
-    up_counter_3_bit upcounter4
+    wire [2:0] out_add;
+    up_counter_3bit upcounter4
     (
         .out(out_add), 
         .ld(1'b0), 
         .inc(Inc4) , 
         .clk(clk) ,
         .data() ,
-        .reset(Countrst4)
+        .reset(Countrst4) , 
+        .carry()
     );
 
     //output_ram

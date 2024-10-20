@@ -9,7 +9,7 @@ module up_counter_3bit(
 );
  //----------Output Ports--------------
   output reg [2:0] out;
-  output reg carry;
+  output carry;
   //------------Input Ports-------------- 
   input [2:0] data;
   input inc, clk, reset , ld;
