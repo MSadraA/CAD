@@ -1,7 +1,6 @@
-module Datapath(
+module datapath(
     input clk, 
     input rst, 
-    input start, 
     input ld1, 
     input ld2, 
     input ld3, 
