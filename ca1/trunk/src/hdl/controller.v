@@ -28,7 +28,7 @@ module controller(
 );
     parameter Idle = 4'd0 , Init = 4'd1 , Load1 = 4'd2 , Load2 = 4'd3 , Shift12 = 4'd4 ,
     Shift1 = 4'd5 , Shift2 = 4'd6 , ShiftDone = 4'd7 , Shiftr1 = 4'd8 , Shiftr2 = 4'd9 ,
-    Write = 4'd10 , Done = 4'd11;
+    Write = 4'd10 , Done = 4'd11 , RSTCNT = 4'd12;
 
     reg [3:0] ps , ns;
 
@@ -36,7 +36,8 @@ module controller(
         ns = Idle;
         case (ps)
             Idle : ns = (start) ? Init : Idle;
-            Init : ns = (start) ? Init : Load1;
+            Init : ns = (start) ? Init : RSTCNT;
+            RSTCNT : ns = Load1;
             Load1 : ns = Load2; 
             Load2 : ns = Shift12;
             Shift12 : begin
@@ -56,7 +57,7 @@ module controller(
             ShiftDone : ns = Shiftr1;
             Shiftr1 : ns = (carry2) ? Shiftr2 : Shiftr1;
             Shiftr2 : ns = (carry3) ? Write : Shiftr2;
-            Write : ns = (carry4) ? Done : Load1;
+            Write : ns = (carry4) ? Done : RSTCNT;
             Done : ns = Idle;
             default: ns = Idle;
         endcase
@@ -67,7 +68,8 @@ module controller(
         Inc3 , Inc4 , Shle1 , Shle2 , Shre , We , done} = 18'b0;
         case (ps)
             Init : begin Countrst1 = 1'b1 ; Countrst4 = 1'b1; end
-            Load1 : begin Countrst2 = 1'b1 ; Countrst3 = 1'b1 ; ld1 = 1'b1 ; Inc1 = 1'b1; end
+            RSTCNT : begin Countrst2 = 1'b1 ; Countrst3 = 1'b1; Inc1 = 1'b1 ; end
+            Load1 : begin ld1 = 1'b1 ; end
             Load2 : begin ld2 = 1'b1; end
             Shift12 :begin Shle1 = 1'b1 ; Shle2 = 1'b1 ; Inc3 = 1'b1; end
             Shift1 : begin Shle1 = 1'b1 ; Inc2 = 1'b1; end

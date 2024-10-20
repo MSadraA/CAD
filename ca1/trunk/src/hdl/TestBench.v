@@ -1,5 +1,5 @@
 module TB();
-    reg clk, rst , start;
+    reg clk, rst = 1, start = 0;
     wire done;
     TopModule top_module
     (
@@ -11,10 +11,15 @@ module TB();
     always #5 clk = ~clk;
 
     initial begin
-        clk = 1'b0; start = 1'b0;
-        #2 rst = 1'b1; start = 1'b1;
-        #6 rst = 1'b0; start = 1'b0;
+        clk = 1'b0;
+        #2 rst = 1'b1;
+        #6 rst = 1'b0;
         #3500 $stop;
+    end
+
+    initial begin
+        #10 start = 1;
+        #5 start = 0;
     end
     
 endmodule
