@@ -27,6 +27,10 @@ module TopModule(
   wire carry2; 
   wire carry3; 
   wire carry4;
+  wire MSB_reg_out1;
+  wire MSB_reg_out2;
+  wire shift_r_valid1;
+  wire shift_r_valid2;
 
   controller Controller
   (
@@ -55,7 +59,11 @@ module TopModule(
     .Shle2(Shle2),
     .Shre(Shre),
     .We(We),
-    .done(done)
+    .done(done),
+    .MSB_reg_out1(MSB_reg_out1),
+    .MSB_reg_out2(MSB_reg_out2),
+    .shift_r_valid1(shift_r_valid1),
+    .shift_r_valid2(shift_r_valid2)
   );
 
   datapath Datapath
@@ -83,6 +91,10 @@ module TopModule(
     .countdone2(countdone2), 
     .carry2(carry2), 
     .carry3(carry3), 
-    .carry4(carry4)
+    .carry4(carry4),
+    .MSB_reg_out1(MSB_reg_out1),
+    .MSB_reg_out2(MSB_reg_out2),
+    .shift_r_valid1(shift_r_valid1),
+    .shift_r_valid2(shift_r_valid2)
   );
 endmodule

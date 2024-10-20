@@ -17,12 +17,16 @@ module datapath(
     input Shle1, 
     input Shle2, 
     input Shre, 
-    input We,  
+    input We,
     output countdone1, 
     output countdone2, 
     output carry2, 
     output carry3, 
-    output carry4
+    output carry4,
+    output MSB_reg_out1,
+    output MSB_reg_out2,
+    output shift_r_valid1,
+    output shift_r_valid2
 );
 
     //in_ram_address 
@@ -73,8 +77,8 @@ module datapath(
     wire [2:0] sub_out1;
     subtractor_3bit Sub1
     (
-        .a(Pout2), 
-        .b(3'b111), 
+        .a(3'b111), 
+        .b(Pout2), 
         .diff(sub_out1)
     );
 
@@ -90,15 +94,15 @@ module datapath(
     );
 
     //count_done_1
-    assign countdone1 = carry2 | shreg1_out[15];
+    assign countdone1 = carry2 | shreg1_out[14];
     
     //worthless_bits_counter2
     wire [2:0] sub_out2;
     wire [2:0] Pout1;
     subtractor_3bit Sub2
     (
-        .a(Pout1) , 
-        .b(3'b111) , 
+        .a(3'b111) , 
+        .b(Pout1) , 
         .diff(sub_out2)
     );
 
@@ -112,6 +116,9 @@ module datapath(
         .reset(Countrst3),
         .carry(carry3)
     );
+
+    //count_done_2
+    assign countdone2 = carry3 | shreg2_out[14];
 
     //multiplication of effective bits
     wire [15:0] mult_out;
@@ -155,4 +162,9 @@ module datapath(
         .wren(We)
     );
    
+    assign MSB_reg_out1 = shreg1_out[15];
+    assign MSB_reg_out2 = shreg2_out[15];
+
+    assign shift_r_valid1 = (Pout2 == 3'b110)? 1:0;
+    assign shift_r_valid2 = (Pout1 == 3'b110)? 1:0;
 endmodule

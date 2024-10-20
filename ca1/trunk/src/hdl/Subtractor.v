@@ -5,6 +5,6 @@ module subtractor_3bit (
 );
 
     // Perform subtraction
-    assign diff = a - b;
+    assign diff = (a) - (b);
 
 endmodule
