@@ -36,7 +36,7 @@ module controller(
 
     reg [3:0] ps , ns;
 
-    always @(ps , start , count_done1 , count_done2 , carry2 , carry3 , carry4) begin
+    always @(*) begin
         ns = Idle;
         case (ps)
             Idle : ns = (start) ? Init : Idle;
@@ -95,7 +95,7 @@ module controller(
             ShiftDone : begin ld4 = 1'b1 ; ld5 = 1'b1 ; ld3 = 1'b1; end
             Shiftr1 : begin Inc2 = 1'b1 ; Shre = 1'b1;  end
             Shiftr2 : begin Inc3 = 1'b1 ; Shre = 1'b1; end
-            Write : begin Inc4 = 1'b1 ; We = 1'b1; end
+            Write : begin Inc4 = 1'b1 ; We = 1'b1; Inc1 = 1'b1; end
             Done : begin done = 1'b1; end
 
             default: 

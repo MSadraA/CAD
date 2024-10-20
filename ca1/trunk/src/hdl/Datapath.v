@@ -25,8 +25,8 @@ module datapath(
     output carry4,
     output MSB_reg_out1,
     output MSB_reg_out2,
-    output shift_r_valid1,
-    output shift_r_valid2
+    output reg shift_r_valid1,
+    output reg shift_r_valid2
 );
 
     //in_ram_address 
@@ -150,7 +150,7 @@ module datapath(
         .clk(clk) ,
         .data() ,
         .reset(Countrst4) , 
-        .carry()
+        .carry(carry4)
     );
 
     //output_ram
@@ -165,6 +165,8 @@ module datapath(
     assign MSB_reg_out1 = shreg1_out[15];
     assign MSB_reg_out2 = shreg2_out[15];
 
-    assign shift_r_valid1 = (Pout2 == 3'b110)? 1:0;
-    assign shift_r_valid2 = (Pout1 == 3'b110)? 1:0;
+    always @(Pout2 , Pout1) begin
+        shift_r_valid1 = (Pout2 == 3'b110)? 1:0;
+        shift_r_valid2 = (Pout1 == 3'b110)? 1:0;
+    end
 endmodule
