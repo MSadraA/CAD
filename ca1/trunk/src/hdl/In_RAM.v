@@ -6,7 +6,7 @@ module in_ram(
 
 	reg [15:0] in_ram_block [0:15];
 
-	initial $readmemb("data_in.mem", in_ram_block);
+	initial $readmemb("data_in.txt", in_ram_block);
 
 	always @(posedge clk) begin
 		data_out <= in_ram_block[address];

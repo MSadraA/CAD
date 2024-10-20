@@ -4,7 +4,7 @@
 	exec vlib work
 	vmap work work
 	
-	set TB					"tb_file_name"
+	set TB					"TestBench"
 	set hdl_path			"../src/hdl"
 	set inc_path			"../src/inc"
 	
@@ -13,8 +13,19 @@
 
 #============================ Add verilog files  ===============================
 # Pleas add other module here	
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/verilog_file_name.v
-	vlog 	+acc -incr -source  +define+SIM 	$inc_path/implementation_option.vh
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/array_mult_8bit.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/controller.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/Datapath.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/In_RAM.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/out_ram.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/shift_register_16bit.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/shift_register_32bit.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/Subtractor.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/TopModule.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/up_counter_3bit.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/Up_Counter_4bit.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/TopModule.v
+	# vlog 	+acc -incr -source  +define+SIM 	$inc_path/implementation_option.vh
 		
 	vlog 	+acc -incr -source  +incdir+$inc_path +define+SIM 	./tb/$TB.v
 	onerror {break}

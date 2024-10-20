@@ -1,4 +1,4 @@
-module TB();
+module TestBench();
     reg clk, rst = 1, start = 0;
     wire done;
     TopModule top_module
