@@ -22,24 +22,55 @@ module datapath
     );
 
     //write register
-    wire [15:0] in_ram_out;
+    wire [k-1:0] w1 , w3;
     register w_pointer
     (
         .clk(clk),
         .ld(ld2),
-        .pIn(),
-        .pOut()
+        .pIn(w3),
+        .pOut(w1)
     );
 
     //read register
-    wire [15:0] in_ram_out;
+    wire [j-1:0] in_ram_out;
     register r_pointer
     (
         .clk(clk),
         .ld(ld3),
-        .pIn(),
-        .pOut()
+        .pIn(w4),
+        .pOut(w2)
     );
+
+    adder add1
+    (
+        .a(w1),
+        .b(k),
+        .w(w3)
+
+    );
+
+    adder add2
+    (
+        .a(w3),
+        .b(k'd1),
+        .w(w3)
+
+    );
+
+    adder add3
+    (
+        .a(w2),
+        .b(j),
+        .w(w4)
+
+    );
+
+    comparator comp1
+    (
+
+    );
+
+    
 
    
     assign MSB_reg_out1 = shreg1_out[15];
