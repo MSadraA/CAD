@@ -67,7 +67,16 @@ module datapath
 
     comparator comp1
     (
+        .a(),
+        .b(),
+        .bt()
+    );
 
+    comparator comp2
+    (
+        .a(),
+        .b(),
+        .bt()
     );
 
     
