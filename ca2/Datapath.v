@@ -65,28 +65,23 @@ module datapath
 
     );
 
+    output wire_full;
     comparator comp1
     (
         .a(w5),
         .b(w2),
-        .bt(full)
+        .bt(wire_full)
     );
 
+    wire wire_empty;
     comparator comp2
     (
         .a(w1),
         .b(j),
-        .bt(empty)
+        .bt(wire_empty)
     );
 
     
-
-   
-    assign MSB_reg_out1 = shreg1_out[15];
-    assign MSB_reg_out2 = shreg2_out[15];
-
-    always @(Pout2 , Pout1) begin
-        shift_r_valid1 = (Pout2 == 3'b110)? 1:0;
-        shift_r_valid2 = (Pout1 == 3'b110)? 1:0;
-    end
+    assign empty = wire_empty;
+    assign full = wire_full;
 endmodule
