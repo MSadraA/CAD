@@ -53,7 +53,7 @@ module datapath
     (
         .a(w3),
         .b(k'd1),
-        .w(w3)
+        .w(w5)
 
     );
 
@@ -67,16 +67,16 @@ module datapath
 
     comparator comp1
     (
-        .a(),
-        .b(),
-        .bt()
+        .a(w5),
+        .b(w2),
+        .bt(full)
     );
 
     comparator comp2
     (
-        .a(),
-        .b(),
-        .bt()
+        .a(w1),
+        .b(j),
+        .bt(empty)
     );
 
     
