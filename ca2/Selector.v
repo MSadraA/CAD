@@ -1,30 +1,30 @@
 module Selector
 #(
-    parameter SIZE = 16,                     // Range of the address
-    parameter K = 8                          // Width of the initial data part
+    parameter SIZE = 16,                          // Maximum value range (determines address width)
+    parameter K = 8                           // Number of inputs
 )
 (
-    input [$clog2(SIZE)-1:0] N,              // Address input
-    input [(K + $clog2(SIZE))-1:0] input0,   // Concatenated input with address and initial data part
-    input [(K + $clog2(SIZE))-1:0] input1,   // Concatenated input with address and initial data part
-    input [(K + $clog2(SIZE))-1:0] input2,   // Concatenated input with address and initial data part
-    input [(K + $clog2(SIZE))-1:0] input3,   // Concatenated input with address and initial data part
-    output [K-1:0] final_result              // Final output after OR-ing all matches
+    input [$clog2(SIZE)-1:0] N,                   // Address input
+    input [(K + $clog2(SIZE)) * K - 1:0] inputs, // Concatenated K inputs
+    output [K-1:0] final_result          // Final OR-ed result
 );
 
-    // Intermediate wires for each input comparison result
-    wire [K-1:0] result0;
-    wire [K-1:0] result1;
-    wire [K-1:0] result2;
-    wire [K-1:0] result3;
+    // Intermediate wires for each comparison result
+    wire [K-1:0] result [0:K-1];
 
-    // Extract and compare the address parts
-    assign result0 = (input0[(K + $clog2(SIZE)) - 1 : K] == N) ? input0[K-1:0] : {K{1'b0}};
-    assign result1 = (input1[(K + $clog2(SIZE)) - 1 : K] == N) ? input1[K-1:0] : {K{1'b0}};
-    assign result2 = (input2[(K + $clog2(SIZE)) - 1 : K] == N) ? input2[K-1:0] : {K{1'b0}};
-    assign result3 = (input3[(K + $clog2(SIZE)) - 1 : K] == N) ? input3[K-1:0] : {K{1'b0}};
+    genvar i;
+    generate
+        for (i = 0; i < K; i = i + 1) begin : match_check
+            // Extract address and data parts for each input
+            wire [$clog2(SIZE)-1:0] addr_part = inputs[(i+1) * (K + $clog2(SIZE)) - 1 -: $clog2(SIZE)];
+            wire [K-1:0] data_part = inputs[i * (K + $clog2(SIZE)) +: K];
 
-    // OR all intermediate results to get the final result
-    assign final_result = result0 | result1 | result2 | result3;
+            // Compare address part with N; if match, output data part; otherwise, output zero
+            assign result[i] = (addr_part == N) ? data_part : {K{1'b0}};
+        end
+    endgenerate
+
+    // OR all results to produce the final output
+    assign final_result = result[0] | result[1] | result[2] | result[3]; // Update for K > 4 if needed
 
 endmodule
