@@ -3,8 +3,8 @@ module controller(
     input rst,
     input read_en,
     input empty,
-    output valid,
-    output ld3
+    output reg valid,
+    output reg ld3
 );
     parameter Idle = 2'd0 , HS = 2'd1 , Read = 2'd2 ;
     reg [1:0] ps , ns;
@@ -31,7 +31,7 @@ module controller(
             HS : valid = 1'b1 ;
             Read : ld3 = 1'b1;
             default: 
-                {ready , ld1 , ld2} = 3'b0;;
+                {valid , ld3} = 2'b0;
         endcase
     end
     
