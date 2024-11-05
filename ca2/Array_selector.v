@@ -18,7 +18,6 @@ module Array_selector
                 .SIZE(SIZE),
                 .K(K)
             ) selector_inst (
-                .N(i),                    // Each Selector gets a unique N from 0 to SIZE-1
                 .N(i[$clog2(SIZE) - 1 : 0]),                    // Each Selector gets a unique N from 0 to SIZE-1
                 .inputs(inputs),          // Shared inputs among all Selectors
                 .final_result(final_result)  // Result from each Selector
