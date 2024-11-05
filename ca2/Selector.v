@@ -25,13 +25,12 @@ module Selector
     endgenerate
 
     // OR all results to produce the final output
-    integer j;
 
-    always @(*) begin
-        final_result = 0;
-        for (j = 0; j < K; i = j + 1) begin
-            final_result = final_result | result[j];
+    assign final_result = 0;
+    generate
+        for (i = 0; i < K; i = i + 1) begin : 
+            assign final_result = final_result|result[i];
         end
-    end
+    endgenerate
 
 endmodule
