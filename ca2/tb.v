@@ -3,14 +3,15 @@
 module tb();
 
     // Parameters
-    parameter K = 8;
+    parameter K = 4;
     parameter SIZE = 16;
     parameter BIT = $clog2(K);
+    
     reg [$clog2(SIZE) - 1 : 0] in =  4'd14;
 
     wire [($clog2(SIZE) * K) - 1:0] num_out;
     wire [($clog2(SIZE) + $clog2(K)) * K - 1 : 0] out;
-    wire [$clog2(K)-1:0] final_result;   
+    wire [(SIZE * $clog2(K)) - 1:0] results;
 
     Generator #(.SIZE(SIZE) , .K(K))
     generator (
@@ -25,12 +26,11 @@ module tb();
         .out(out)
     );
 
-    Selector #(.SIZE(SIZE) , .K(K))
-    Selector
+    Array_selector #(.SIZE(SIZE) , .K(K))
+    array_selector
     (
-        .N(4'd5) ,
         .inputs(out) ,
-        .final_result(final_result)
+        .results(results)
     );
 
     initial #10 $stop;
