@@ -38,7 +38,8 @@ module tb();
         inputs[3] = 8'b00000100; // 4
 
         // Sequentially load values from the inputs array
-        for (int i = 0; i < 4; i++) begin
+        integer i; // Declare an integer variable for the loop
+        for (i = 0; i < 4; i++) begin
             par_in = inputs[i];    // Load value from the array
             #25 ld = 1;            // Assert load signal
             #10 ld = 0;            // De-assert load signal
@@ -63,6 +64,8 @@ module tb();
     .par_in(par_in),
     .par_out(par_out)
     );
+
+    // Uncomment and complete the following instances as needed
 
     // Generator #(.SIZE(SIZE) , .K(K))
     // generator (
@@ -92,3 +95,4 @@ module tb();
     // );
 
 endmodule
+
