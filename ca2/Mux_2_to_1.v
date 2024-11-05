@@ -1,10 +1,10 @@
 module Mux_2_to_1 
-#(parameter SIZE = 16)
+#(parameter WIDTH = 16)
 (
     input sel,
-    input [SIZE:0] a,
-    input [SIZE:0] b,
-    output [SIZE:0] out
+    input [WIDTH -1 :0] a,
+    input [WIDTH - 1:0] b,
+    output [WIDTH - 1:0] out
 );
     assign out = (sel) ? b:a ;
 endmodule
