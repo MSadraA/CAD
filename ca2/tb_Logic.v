@@ -23,36 +23,36 @@ module tb();
 
     reg clk = 0, rst = 1, ld = 0; 
 
+    // Array of 8-bit binary inputs
+    reg [WIDTH-1:0] inputs [0:3]; // Array for 1, 2, 3, and 4
+
+    // Clock generation
     always #10 clk = ~clk;
     initial #12 rst = 0;
 
     initial begin
-        // Initialize par_in with 8-bit binary values for 1, 2, 3, and 4
-        par_in = 8'b00000001; // par_in = 1
-        #25 ld = 1;          // Load par_in value
-        #10 ld = 0;         // Reset load signal
+        // Initialize the inputs array with values for 1, 2, 3, and 4
+        inputs[0] = 8'b00000001; // 1
+        inputs[1] = 8'b00000010; // 2
+        inputs[2] = 8'b00000011; // 3
+        inputs[3] = 8'b00000100; // 4
 
-        #10 par_in = 8'b00000010; // par_in = 2
-        #25 ld = 1;          // Load par_in value
-        #10 ld = 0;         // Reset load signal
+        // Sequentially load values from the inputs array
+        for (int i = 0; i < 4; i++) begin
+            par_in = inputs[i];    // Load value from the array
+            #25 ld = 1;            // Assert load signal
+            #10 ld = 0;            // De-assert load signal
+        end
 
-        #10 par_in = 8'b00000011; // par_in = 3
-        #25 ld = 1;          // Load par_in value
-        #10 ld = 0;         // Reset load signal
-
-        #10 par_in = 8'b00000100; // par_in = 4
-        #25 ld = 1;          // Load par_in value
-        #10 ld = 0;         // Reset load signal
-
-        // Stop the simulation after a delay
+        // Stop the simulation after all inputs are processed
         #10 $stop;
     end
 
     Buffer #(
     .SIZE(SIZE),    // Buffer size
-    .WIDTH(WIDTH),    // Data width
-    .K(K),        // Input parallel factor
-    .J(J)         // Output parallel factor
+    .WIDTH(WIDTH),   // Data width
+    .K(K),           // Input parallel factor
+    .J(J)            // Output parallel factor
     ) 
     (
     .clk(clk),
