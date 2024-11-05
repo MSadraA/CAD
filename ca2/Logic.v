@@ -4,12 +4,11 @@ module Logic
     parameter K = 8                               // Number of inputs per Selector
 )
 (
-    input [$clog2(SIZE)-1:0] address_in,            // Input address
+    input [$clog2(SIZE)-1:0] address_in,  
+    output [($clog2(SIZE) * K) - 1:0] generated_nums,          // Input address
     output [(SIZE * $clog2(K)) - 1:0] final_result  // Final concatenated result from the array selector
 );
 
-    // Intermediate wires
-    wire [($clog2(SIZE) * K) - 1:0] generated_nums; // Output from the Generator
     wire [($clog2(K) + $clog2(SIZE)) * K - 1:0] inputs_to_array; // Concatenated inputs for Array_selector
 
     // Instantiate the Generator module
@@ -38,5 +37,7 @@ module Logic
         .inputs(inputs_to_array),               // Inputs from Concat module to Array_selector
         .results(final_result)                  // Final result output from Array_selector
     );
+
+
 
 endmodule
