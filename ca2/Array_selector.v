@@ -1,4 +1,4 @@
-module SelectorArray
+module Array_selector
 #(
     parameter SIZE = 16,                          // Maximum value range (determines address width)
     parameter K = 8                               // Number of inputs per Selector
@@ -19,6 +19,7 @@ module SelectorArray
                 .K(K)
             ) selector_inst (
                 .N(i),                    // Each Selector gets a unique N from 0 to SIZE-1
+                .N(i[$clog2(SIZE) - 1 : 0]),                    // Each Selector gets a unique N from 0 to SIZE-1
                 .inputs(inputs),          // Shared inputs among all Selectors
                 .final_result(final_result)  // Result from each Selector
             );
