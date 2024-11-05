@@ -4,23 +4,31 @@ module SelectorArray
     parameter K = 8                               // Number of inputs per Selector
 )
 (
-    input [($clog2(K) + $clog2(SIZE)) * K - 1:0] inputs, // Common inputs for all selectors
-    output reg [$clog2(K)-1:0] results [SIZE-1:0]        // Array of results from each Selector
+    input [($clog2(K) + $clog2(SIZE)) * K - 1:0] inputs,  // Common inputs for all selectors
+    output reg [(SIZE * $clog2(K)) - 1:0] results         // Concatenated results from each Selector
 );
 
     genvar i;
     generate
         for (i = 0; i < SIZE; i = i + 1) begin : selector_inst
+            wire [$clog2(K)-1:0] final_result;
+
             // Instantiate a Selector for each N value from 0 to SIZE-1
             Selector #(
                 .SIZE(SIZE),
                 .K(K)
             ) selector_inst (
-                .N(i),                 // Each Selector gets a unique N from 0 to SIZE-1
-                .inputs(inputs),       // Shared inputs among all Selectors
-                .final_result(results[i]) // Store each Selector's result in the results array
+                .N(i),                    // Each Selector gets a unique N from 0 to SIZE-1
+                .inputs(inputs),          // Shared inputs among all Selectors
+                .final_result(final_result)  // Result from each Selector
             );
+
+            // Assign the result to the appropriate part of the concatenated results bus
+            always @(*) begin
+                results[(i+1) * $clog2(K) - 1 -: $clog2(K)] = final_result;
+            end
         end
     endgenerate
 
 endmodule
+
