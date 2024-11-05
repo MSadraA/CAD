@@ -2,9 +2,9 @@ module MultiSelector #(
     parameter SIZE = 16,                    // Maximum value range for address
     parameter K = 4                         // Number of Selector instances
 ) (
-    input [$clog2(SIZE)*K-1:0] N_flat,     // Flattened address inputs
-    input [(K + $clog2(SIZE)) * K - 1:0] inputs,  
-    output [K*K-1:0] outputs_flat    // Flattened outputs - no array declaration
+    input [$clog2(SIZE)*SIZE-1:0] address_array,     // Flattened address inputs
+    input [($clog2(K) + $clog2(SIZE)) * K * SIZE - 1:0] inputs,  
+    output [$clog2(k) * SIZE -1:0] sel_array    // Flattened outputs - no array declaration
 );
     // Generate K instances
     genvar i;
