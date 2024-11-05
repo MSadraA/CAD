@@ -1,22 +1,24 @@
-module MultiSelector #(
-    parameter SIZE = 16,                    // Maximum value range for address
-    parameter K = 4                         // Number of Selector instances
-) (
-    input [$clog2(SIZE)*K-1:0] N_flat,     // Flattened address inputs
-    input [(K + $clog2(SIZE)) * K - 1:0] inputs,  
-    output [K*K-1:0] outputs_flat    // Flattened outputs - no array declaration
+module SelectorArray
+#(
+    parameter SIZE = 16,                          // Maximum value range (determines address width)
+    parameter K = 8                               // Number of inputs per Selector
+)
+(
+    input [($clog2(K) + $clog2(SIZE)) * K - 1:0] inputs, // Common inputs for all selectors
+    output reg [$clog2(K)-1:0] results [SIZE-1:0]        // Array of results from each Selector
 );
-    // Generate K instances
+
     genvar i;
     generate
-        for (i = 0; i < K; i = i + 1) begin : selector_instance
+        for (i = 0; i < SIZE; i = i + 1) begin : selector_inst
+            // Instantiate a Selector for each N value from 0 to SIZE-1
             Selector #(
                 .SIZE(SIZE),
                 .K(K)
             ) selector_inst (
-                .N(N_flat[i*$clog2(SIZE) +: $clog2(SIZE)]),
-                .inputs(inputs),
-                .final_result(outputs_flat[i*K +: K])
+                .N(i),                 // Each Selector gets a unique N from 0 to SIZE-1
+                .inputs(inputs),       // Shared inputs among all Selectors
+                .final_result(results[i]) // Store each Selector's result in the results array
             );
         end
     endgenerate
