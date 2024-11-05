@@ -1,69 +1,94 @@
-// Test stimulus
-initial begin
-    // Initialize waveform dump
-    $dumpfile("buffer_tb.vcd");
-    $dumpvars(0, Buffer_tb);
-    
-    // Initialize signals
-    rst = 1;       // Start with reset active
-    ld = 0;       // Load signal
-    write_add = 0; // Initial write address
-    read_add = 0;  // Initial read address
-    par_in = 0;    // Input data
-    
-    // Wait for global reset
-    #10;
-    rst = 0;  // Deactivate reset
+`timescale 1ns/1ps
 
-    // Test case 1: Load value 1 (00000001)
-    par_in = 8'b00000001; // Input binary 1
-    write_add = 0;        // Write address
-    ld = 1;               // Activate load
-    #10;                  // Wait for one clock cycle
-    ld = 0;               // Deactivate load
-    #10;                  // Wait for stability
+module tb();
 
-    // Test case 2: Load value 2 (00000010)
-    par_in = 8'b00000010; // Input binary 2
-    write_add = 1;        // Write address for the second input
-    ld = 1;               // Activate load
-    #10;                  // Wait for one clock cycle
-    ld = 0;               // Deactivate load
-    #10;                  // Wait for stability
+    // Parameters
+    parameter K = 4;
+    parameter J = 8;
+    parameter SIZE = 16;
+    parameter WIDTH = 8;
+    parameter BIT = $clog2(SIZE);
 
-    // Test case 3: Load value 3 (00000011)
-    par_in = 8'b00000011; // Input binary 3
-    write_add = 2;        // Write address for the third input
-    ld = 1;               // Activate load
-    #10;                  // Wait for one clock cycle
-    ld = 0;               // Deactivate load
-    #10;                  // Wait for stability
+    reg [$clog2(SIZE) - 1 : 0] in =  4'd14;
 
-    // Test case 4: Load value 4 (00000100)
-    par_in = 8'b00000100; // Input binary 4
-    write_add = 3;        // Write address for the fourth input
-    ld = 1;               // Activate load
-    #10;                  // Wait for one clock cycle
-    ld = 0;               // Deactivate load
-    #10;                  // Wait for stability
+    wire [($clog2(SIZE) * K) - 1:0] num_out;
+    wire [($clog2(SIZE) + $clog2(K)) * K - 1 : 0] out;
+    wire [(SIZE * $clog2(K)) - 1:0] results;
+    wire [SIZE - 1:0] decoder_out;
 
-    // Optionally read values back to check if they were stored correctly
-    read_add = 0;         // Read from address 0
-    #10;                  // Wait for one clock cycle
-    // Add code to check the output par_out here if needed
+    reg [BIT-1:0] write_add = 4'd14;
+    reg [BIT-1:0] read_add = 4'd1;
+    reg [(WIDTH*K)-1:0] par_in;
+    wire [(WIDTH*J)-1:0] par_out;
 
-    read_add = 1;         // Read from address 1
-    #10;                  // Wait for one clock cycle
-    // Add code to check the output par_out here if needed
+    reg clk = 0, rst = 1, ld = 0; 
 
-    read_add = 2;         // Read from address 2
-    #10;                  // Wait for one clock cycle
-    // Add code to check the output par_out here if needed
+    always #10 clk = ~clk;
+    initial #12 rst = 0;
 
-    read_add = 3;         // Read from address 3
-    #10;                  // Wait for one clock cycle
-    // Add code to check the output par_out here if needed
+    initial begin
+        // Initialize par_in with 8-bit binary values for 1, 2, 3, and 4
+        par_in = 8'b00000001; // par_in = 1
+        #25 ld = 1;          // Load par_in value
+        #10 ld = 0;         // Reset load signal
 
-    // Finish the simulation
-    $finish;
-end
+        #10 par_in = 8'b00000010; // par_in = 2
+        #25 ld = 1;          // Load par_in value
+        #10 ld = 0;         // Reset load signal
+
+        #10 par_in = 8'b00000011; // par_in = 3
+        #25 ld = 1;          // Load par_in value
+        #10 ld = 0;         // Reset load signal
+
+        #10 par_in = 8'b00000100; // par_in = 4
+        #25 ld = 1;          // Load par_in value
+        #10 ld = 0;         // Reset load signal
+
+        // Stop the simulation after a delay
+        #10 $stop;
+    end
+
+    Buffer #(
+    .SIZE(SIZE),    // Buffer size
+    .WIDTH(WIDTH),    // Data width
+    .K(K),        // Input parallel factor
+    .J(J)         // Output parallel factor
+    ) 
+    (
+    .clk(clk),
+    .ld(ld),
+    rst(rst),
+    .write_add(write_add),
+    .read_add(read_add),
+    .par_in(par_in),
+    .par_out(par_out)
+    );
+
+    // Generator #(.SIZE(SIZE) , .K(K))
+    // generator (
+    //     .num_in(in),
+    //     .num_out(num_out)
+    // );
+
+    // Decoder #(.SIZE(SIZE) , .K(K))
+    // decoder
+    // (
+    //     .generated_addr(num_out) ,
+    //     .out(decoder_out)
+    // );
+
+    // Concat #(.SIZE(SIZE) , .K(K))
+    // concat 
+    // (
+    //     .in(num_out),
+    //     .out(out)
+    // );
+
+    // Array_selector #(.SIZE(SIZE) , .K(K))
+    // array_selector
+    // (
+    //     .inputs(out) ,
+    //     .results(results)
+    // );
+
+endmodule
