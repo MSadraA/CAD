@@ -5,17 +5,18 @@ module Decoder
     parameter BIT = $clog2(SIZE)
 ) 
 (
-    input [(K * BIT) - 1:0] generated_addr,     // Concatenated input generated_addr of K chunks, each of BIT width
-    output reg [SIZE - 1:0] out   // Concatenated one-hot encoded outputs for each chunk
+    input [(K * BIT) - 1:0] generated_addr,    
+    output reg [SIZE - 1:0] out  
 );
-
-    integer i; // Loop index
-
-    always @(*) begin
-        out = {SIZE{1'b0}}; // Corrected to properly initialize out with SIZE zeros
-        // Loop through each chunk of the input generated_addr
-        for (i = 0; i < K; i = i + 1) begin
-            out[generated_addr[BIT * (i + 1) - 1 : BIT * i]] = 1'b1;
+    // Generate block to create K separate combinational assignments
+    assign out = {SIZE{1'b0}};
+    genvar g;
+    generate
+        for (g = 0; g < K; g = g + 1) begin : addr_decode
+            always @(*) begin
+                out[generated_addr[BIT * (g + 1) - 1 : BIT * g]] = 1'b1;
+            end
         end
-    end
+    endgenerate
+
 endmodule
