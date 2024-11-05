@@ -22,6 +22,7 @@ module Buffer #(
     wire [(RAM_SIZE*SIZE)-1:0] ram_out;
     wire [(SIZE*WIDTH)-1:0] ram_in;
 
+    wire [($clog2(SIZE) * J) - 1:0] gen_out;
 
     Logic #(.SIZE(SIZE) , .K(K))
     logic
@@ -80,10 +81,17 @@ module Buffer #(
         .par_out(ram_out)
     );
 
+    Generator #(.SIZE(SIZE) , .K(J))
+    generator
+    (
+        .num_in(read_add),
+        .num_out(gen_out)
+    );
+
     generate
         for (i = 0; i < J; i = i + 1) begin : 
             wire sel;
-            assign sel = generated_add[BIT * (i+1) - 1: BIT * i];
+            assign sel = gen_out[BIT * (i+1) - 1: BIT * i];
 
             Mux_k_to_1 #(.WIDTH(WIDTH) , .K(SIZE))
             mux_k_to_1_out
