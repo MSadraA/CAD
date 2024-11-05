@@ -7,7 +7,7 @@ module tb();
     parameter J = 8;
     parameter SIZE = 16;
     parameter WIDTH = 8;
-    parameter BIT = $clog2(K);
+    parameter BIT = $clog2(SIZE);
 
     reg [$clog2(SIZE) - 1 : 0] in =  4'd14;
 
@@ -17,6 +17,24 @@ module tb();
     wire [SIZE - 1:0] decoder_out;
 
 
+
+
+    reg [BIT-1:0] write_add = 4'd14;
+    reg [BIT-1:0] read_add = 4'd1;
+    reg [(WIDTH*K)-1:0] par_in;
+    wire [(WIDTH*J)-1:0] par_out;
+
+
+
+    reg clk = 0 , rst = 1 , ld = 0; 
+
+    always #10 clk = ~clk;
+    initial #12 rst = 0
+    initial begin
+        #25 ld = 1;
+        #10 ld = 0;
+    end
+
     Buffer #(
     .SIZE(SIZE),    // Buffer size
     .WIDTH(WIDTH),    // Data width
@@ -24,16 +42,14 @@ module tb();
     .J(J),        // Output parallel factor
     ) 
     (
-    input wire clk,
-    input wire ld,
-    input wire rst,
-    input wire [BIT-1:0] write_add,
-    input wire [BIT-1:0] read_add,
-    input wire [(WIDTH*K)-1:0] par_in,
-    output wire [(WIDTH*J)-1:0] par_out
+    .clk(clk),
+    .ld(ld),
+    rst(rst),
+    .write_add(write_add),
+    .read_add(read_add),
+    .par_in(par_in),
+    .par_out(par_out)
     );
-
-
 
     // Generator #(.SIZE(SIZE) , .K(K))
     // generator (
