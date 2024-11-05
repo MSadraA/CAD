@@ -32,19 +32,19 @@ module tb_Logic;
         
         // Test Case 1: Start with address 0
         address_in = 0;
-        #10;
+        #50;
 
         // Test Case 2: Check address 4
         address_in = 4;
-        #10;
+        #50;
 
         // Test Case 3: Check address 10
         address_in = 10;
-        #10;
+        #50;
 
         // Test Case 4: Check address 15 (Wrapping around)
         address_in = 15;
-        #10;
+        #50;
 
         // Finish the simulation
         $finish;
