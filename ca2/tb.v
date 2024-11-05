@@ -12,7 +12,7 @@ module tb();
     wire [($clog2(SIZE) * K) - 1:0] num_out;
     wire [($clog2(SIZE) + $clog2(K)) * K - 1 : 0] out;
     wire [(SIZE * $clog2(K)) - 1:0] results;
-    wire [(K * SIZE) - 1:0] decoder_out;
+    wire [SIZE - 1:0] decoder_out;
 
     Generator #(.SIZE(SIZE) , .K(K))
     generator (
