@@ -1,4 +1,4 @@
-module controller(
+module r_controller(
     input clk,
     input rst,
     input read_en,

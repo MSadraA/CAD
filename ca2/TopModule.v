@@ -1,100 +1,74 @@
-module TopModule(
-    input start,
+module TopModule #(
+    parameter SIZE = 16,    // Buffer size
+    parameter WIDTH = 8,    // Data width
+    parameter K = 4,        // Input parallel factor
+    parameter J = 4,        // Output parallel factor
+    parameter BIT = $clog2(SIZE)  // Address bits
+
+)   (
     input clk,
-    input rst , 
-    output done
+    input rst,
+    input w_en,
+    input r_en,
+    input [(WIDTH*K)-1:0] par_in,
+    output [(WIDTH*J)-1:0] par_out,
+    output empty,
+    output ready,
+    output full,
+    output valid
 );
 
-  wire ld1; 
-  wire ld2; 
-  wire ld3; 
-  wire ld4; 
-  wire ld5; 
-  wire Inc1; 
-  wire Inc2;
-  wire Inc3; 
-  wire Inc4; 
-  wire Countrst1;
-  wire Countrst2; 
-  wire Countrst3;
-  wire Countrst4; 
-  wire Shle1; 
-  wire Shle2; 
-  wire Shre;
-  wire We;  
-  wire countdone1; 
-  wire countdone2; 
-  wire carry2; 
-  wire carry3; 
-  wire carry4;
-  wire MSB_reg_out1;
-  wire MSB_reg_out2;
-  wire shift_r_valid1;
-  wire shift_r_valid2;
+parameter INIT_LOW = 1'b0;
+parameter INIT_HIGH = 1'b1;
 
-  controller Controller
-  (
+wire [(WIDTH*J)-1:0] out;
+wire ld1 , ld2;
+wire wire_full = 1'b0, wire_empty = 1'b0;
+
+
+  W_controller writecontroller(
     .clk(clk),
     .rst(rst),
-    .start(start),
-    .count_done1(countdone1),
-    .count_done2(countdone2),
-    .carry2(carry2),
-    .carry3(carry3),
-    .carry4(carry4),
-    .Countrst1(Countrst1),
-    .Countrst2(Countrst2),
-    .Countrst3(Countrst3),
-    .Countrst4(Countrst4),
+    .full(full),
+    .w_en(w_en),
+    .ready(ready),
+    .ld1(ld1),
+    .ld2(ld2)
+);
+
+r_controller readcontroller(
+    .clk(clk),
+    .rst(rst),
+    .read_en(r_en),
+    .empty(empty_wire),
+    .valid(valid),
+    .ld3(ld3)
+);
+
+datapath  #(
+    .SIZE(SIZE),
+    .WIDTH(WIDTH),
+    .K(K),
+    .J(J),
+    .BIT(BIT)
+
+)   datapath_inst(
+    .clk(clk),
+    .rst(rst),
     .ld1(ld1),
     .ld2(ld2),
-    .ld3(ld3),
-    .ld4(ld4),
-    .ld5(ld5),
-    .Inc1(Inc1),
-    .Inc2(Inc2),
-    .Inc3(Inc3),
-    .Inc4(Inc4),
-    .Shle1(Shle1),
-    .Shle2(Shle2),
-    .Shre(Shre),
-    .We(We),
-    .done(done),
-    .MSB_reg_out1(MSB_reg_out1),
-    .MSB_reg_out2(MSB_reg_out2),
-    .shift_r_valid1(shift_r_valid1),
-    .shift_r_valid2(shift_r_valid2)
-  );
+    .ld3(ld2),
+    .par_in(par_in),
+    .par_out(par_out),
+    .full(full_wire),
+    .empty(empty_wire),
+    .out(out)
+    
+);
 
-  datapath Datapath
-  (
-    .clk(clk), 
-    .rst(rst),  
-    .ld1(ld1), 
-    .ld2(ld2), 
-    .ld3(ld3), 
-    .ld4(ld4), 
-    .ld5(ld5), 
-    .Inc1(Inc1), 
-    .Inc2(Inc2),
-    .Inc3(Inc3), 
-    .Inc4(Inc4), 
-    .Countrst1(Countrst1),
-    .Countrst2(Countrst2), 
-    .Countrst3(Countrst3),
-    .Countrst4(Countrst4), 
-    .Shle1(Shle1), 
-    .Shle2(Shle2), 
-    .Shre(Shre), 
-    .We(We),  
-    .countdone1(countdone1), 
-    .countdone2(countdone2), 
-    .carry2(carry2), 
-    .carry3(carry3), 
-    .carry4(carry4),
-    .MSB_reg_out1(MSB_reg_out1),
-    .MSB_reg_out2(MSB_reg_out2),
-    .shift_r_valid1(shift_r_valid1),
-    .shift_r_valid2(shift_r_valid2)
-  );
+
+assign par_out = out;
+assign empty = empty_wire;
+assign full = full_wire;
+
 endmodule
