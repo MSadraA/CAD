@@ -1,14 +1,18 @@
-module register(clk, ld, pIn, pOut);
-
-	input clk, ld;
-	input [9:0] pIn;
-	output reg [9:0] pOut;
-
-	always@(posedge clk) begin
-		if(ld)
-			pOut <= pIn;
-		else
-			pOut <= pOut;
+module register #(
+	parameter SIZE = 8,
+	parameter BIT = $clog2(SIZE)
+) 
+(
+	input clk,
+	input rst,
+	input ld,
+	input [BIT - 1:0] par_in,
+	output reg [BIT - 1 :0] par_out
+);
+	always @(posedge clk) begin
+		if(rst)
+			par_out <= 0;
+		else if(ld)
+			par_out <= par_in;
 	end
-
-endmodule	
+endmodule

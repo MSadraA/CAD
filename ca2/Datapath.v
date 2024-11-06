@@ -1,4 +1,4 @@
-module datapath #(
+module Datapath #(
     parameter SIZE = 16,    // Buffer size
     parameter WIDTH = 8,    // Data width
     parameter K = 4,        // Input parallel factor
@@ -13,93 +13,95 @@ module datapath #(
     input [(WIDTH*K)-1:0] par_in,
     output [(WIDTH*J)-1:0] par_out,
     output full,
-    output empty,
-    output out
+    output empty
+    // output out
 );
 
-    wire [K-1:0] w1, w3, w5;
-    wire [J-1:0] w2, w4;
-    wire [(WIDTH*J)-1:0] parallelout;
-    wire wire_full = 1'b0, wire_empty = 1'b0;
+    wire [BIT-1:0] write_add , read_add;
+    wire [BIT - 1 : 0] w_pointer_in , r_pointer_in;
+    wire [BIT - 1 : 0] full_comprator_in , empty_comprator_in;
+
 
     //in_buffer
     Buffer #(
         .SIZE(SIZE),
         .WIDTH(WIDTH),
         .K(K),
-        .J(J),
-        .BIT($clog2(SIZE))
+        .J(J)
     ) Buffer_inst(
         .clk(clk),
         .ld(ld1),
         .rst(rst),
-        .write_add(w1),
-        .read_add(w2),
+        .write_add(write_add),
+        .read_add(read_add),
         .par_in(par_in),
-        .par_out(parallelout)
+        .par_out(par_out)//
     );
     //write register
     
-    register w_pointer
+    register #(
+        .SIZE(SIZE)
+    )
+    w_pointer
     (
         .clk(clk),
+        .rst(rst),
         .ld(ld2),
-        .pIn(w3),
-        .pOut(w1)
+        .par_in(w_pointer_in),
+        .par_out(write_add)
     );
 
     //read register
-    register r_pointer
+    register #(
+        .SIZE(SIZE)
+    )
+    r_pointer
     (
         .clk(clk),
         .ld(ld3),
-        .pIn(w4),
-        .pOut(w2)
+        .rst(rst),
+        .par_in(r_pointer_in),
+        .par_out(read_add)
     );
 
-    adder #(.K(K))
-     add1
+    adder #(.SIZE(SIZE))
+    w_address_adder
     (
-        .a(w1),
-        .b(k),
-        .w(w3)
-
+        .par_in(write_add),
+        .imm(K[BIT-1:0]),
+        .par_out(w_pointer_in)
     );
 
-    adder #(.K(K))
-     add2
+    adder #(.SIZE(SIZE))
+    w_address_inc
     (
-        .a(w3),
-        .b({K{1'b1}}),
-        .w(w5)
-
+        .par_in(w_pointer_in),
+        .imm({{BIT-1{1'b0}} , 1'b1}),
+        .par_out(full_comprator_in)
     );
 
-    adder #(.K(K))
-    add3
+    adder #(.SIZE(SIZE))
+    r_address_adder
     (
-        .a(w2),
-        .b(J),
-        .w(w4)
-
+        .par_in(read_add),
+        .imm(J[BIT-1:0]),
+        .par_out(empty_comprator_in)
     );
 
-    comparator comp1
+    comparator #(.SIZE(SIZE))
+    full_comprator
     (
-        .a(w5),
-        .b(w2),
-        .bt(wire_full)
+        .a(full_comprator_in),
+        .b(read_add),
+        .bte(full)
     );
 
-    comparator comp2
+    comparator #(.SIZE(SIZE))
+    empty_comprator
     (
-        .a(w1),
-        .b(J),
-        .bt(wire_empty)
+        .a(empty_comprator_in),
+        .b(write_add),
+        .bte(empty)
     );
 
-    
-    assign empty = wire_empty;
-    assign full = wire_full;
-    assign par_out = parallelout;
 endmodule
