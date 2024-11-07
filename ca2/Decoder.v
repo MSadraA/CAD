@@ -8,15 +8,15 @@ module Decoder
     input [(K * BIT) - 1:0] generated_addr,    
     output reg [SIZE - 1:0] out  
 );
-    // Generate block to create K separate combinational assignments
-    assign out = {SIZE{1'b0}};
-    genvar g;
-    generate
-        for (g = 0; g < K; g = g + 1) begin : addr_decode
-            always @(*) begin
-                out[generated_addr[BIT * (g + 1) - 1 : BIT * g]] = 1'b1;
-            end
+
+    integer i;
+    always @(*) begin
+        out = {SIZE{1'b0}};  // Initialize output to zero
+        // Decode only the first valid address in generated_addr
+        for (i = 0; i < K; i = i + 1) begin
+            if (generated_addr[BIT * (i + 1) - 1 -: BIT] < SIZE)
+                out[generated_addr[BIT * (i + 1) - 1 -: BIT]] = 1'b1;
         end
-    endgenerate
+    end
 
 endmodule
