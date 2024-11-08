@@ -1,12 +1,12 @@
 `timescale 1ns/1ns
 
-module tb;
+module tb_case1();
 
     // Testbench Parameters
-    parameter SIZE = 16;
+    parameter SIZE = 4;
     parameter WIDTH = 8;  // Define width (adjust as needed)
-    parameter K = 4;      // Number of parallel inputs
-    parameter J = 4;      // Number of parallel outputs
+    parameter K = 1;      // Number of parallel inputs
+    parameter J = 1;      // Number of parallel outputs
 
     // Inputs to DUT (Device Under Test)
     reg clk;
@@ -40,12 +40,9 @@ module tb;
         .full(full),
         .valid(valid)
     );
-
-    // Clock generation
-    always #5 clk = ~clk;  // 100MHz clock (10ns period)
+    always #5 clk = ~clk; 
 
     initial begin
-        // Initialize Inputs
         clk = 0;
         rst = 1;
         w_en = 0;
@@ -54,36 +51,48 @@ module tb;
 
         #10;
         rst =0;
+        #5
 
-
-        // Write Operation
-        // Generate some data to write into the buffer
+        #20;//clk1
         w_en = 1;
-        par_in = {8'd10, 8'd15, 8'd25, 8'd12}; // Parallel input data (example)
-        
-        #100;  // Wait for 20ns
-
-
-        w_en = 0; // Disable write
-
-        // Wait a few cycles
-        #50;
-
-        // Read Operation
-        r_en = 1;
-        
-        // Wait for read to complete
-        #20;
-
         r_en = 0;
-
-        #20
+        par_in = 8'd8;
+        
+        #20;//clk2
+        w_en = 0;
         r_en = 1;
 
-        #20 
-        r_en = 0;
+        #20//clk3
+        w_en = 0;
+        r_en = 1;
 
-        // End simulation
+        #20//clk4
+        w_en = 1;
+        r_en = 1;
+        par_in = 8'd12;
+
+        #20//clk5
+        w_en = 1;
+        r_en = 1;
+        par_in = 8'd5;
+
+        #20//clk6
+        w_en = 1;
+        r_en = 1;
+        par_in = 8'd7;
+        
+        #20//clk7
+        w_en = 0;
+        r_en = 1;
+
+        #20//clk8
+        w_en = 0;
+        r_en = 1;
+
+        #20//clk9
+        w_en = 0;
+        r_en = 1;
+
         #300;
         $stop;
     end

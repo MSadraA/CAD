@@ -3,8 +3,9 @@ module r_controller(
     input rst,
     input read_en,
     input empty,
-    output reg valid,
-    output reg ld3
+    input full,
+    output reg ld3,
+    output reg valid
 );
     parameter Idle = 2'd0 , HS = 2'd1 , Read = 2'd2 ;
     reg [1:0] ps , ns;
@@ -13,25 +14,25 @@ module r_controller(
         ns = Idle;
         case (ps)
             Idle :begin
-                if((~read_en) || empty)
+                if((~read_en) || ((empty) && (~empty || ~full)))
                     ns = Idle;
                 else begin
-                    if((read_en)&(~empty))
-                        ns = HS;
+                    if((read_en) && ((~empty) || (empty && full)))
+                        ns = Read;
                 end
             end
-            HS : ns = (read_en) ? HS : Read;
+            // HS : ns = (read_en) ? HS : Read;
             Read : ns = Idle;
         endcase
     end
 
     always @(ps) begin
-        {valid , ld3} = 2'b0;
+        {ld3 , valid} = 2'b0;
         case (ps)
-            HS : valid = 1'b1 ;
-            Read : ld3 = 1'b1;
+            // HS : valid = 1'b1 ;
+            Read : begin {ld3} = 1'b1; valid = ~empty; end
             default: 
-                {valid , ld3} = 2'b0;
+                {ld3 , valid} = 2'b0;
         endcase
     end
     
