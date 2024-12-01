@@ -1,10 +1,8 @@
-module adder #(
-    parameter WIDTH = 16
-) (
-    input wire [WIDTH-1:0] in1,
-    input wire [WIDTH-1:0] in2,
+module adder (
+    input wire [15:0] in1,
+    input wire [15:0] in2,
     input wire cin,
-    output wire [WIDTH-1:0] out,
+    output wire [15:0] out,
     output wire co
 );
     wire [WIDTH:0] carry;
@@ -12,7 +10,7 @@ module adder #(
 
     genvar i;
     generate
-        for (i = 0; i < WIDTH; i = i + 1) begin : gen_adder
+        for (i = 0; i < 16; i = i + 1) begin : gen_adder
             adder_1bit u_adder (
                 .A(in1[i]),
                 .B(in2[i]),
@@ -23,7 +21,7 @@ module adder #(
         end
     endgenerate
 
-    assign co = carry[WIDTH];
+    assign co = carry[16];
 endmodule
 
 module adder_1bit (

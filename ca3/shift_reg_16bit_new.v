@@ -1,4 +1,4 @@
-module shift_register_19bit_new #(
+module shift_register_19bit_new (
     input clk,
     input rst,
     input ld,
