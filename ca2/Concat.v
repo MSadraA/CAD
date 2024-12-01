@@ -13,8 +13,13 @@ module Concat
     genvar i;
     generate
         for (i = 0; i < K; i = i + 1) begin : gen_block
-            assign out[OUT_WIDTH * (i + 1) - 1 : OUT_WIDTH * i] = 
-                {in[IN_WIDTH * (i + 1) - 1 : IN_WIDTH * i], i[$clog2(K) - 1 : 0]};
+            if(K != 1) 
+                assign out[OUT_WIDTH * (i + 1) - 1 : OUT_WIDTH * i] = 
+                    {in[(IN_WIDTH * (i + 1)) - 1 : IN_WIDTH * i], i[$clog2(K) - 1 : 0]};
+                
+            else
+                assign out[OUT_WIDTH * (i + 1) - 1 : OUT_WIDTH * i] = 
+                    {in[(IN_WIDTH * (i + 1)) - 1 : IN_WIDTH * i], i};
         end
     endgenerate
 endmodule

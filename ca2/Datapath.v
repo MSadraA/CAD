@@ -60,7 +60,7 @@ module Datapath #(
         .clk(clk),
         .ld(ld3),
         .rst(rst),
-        .par_in(r_pointer_in),
+        .par_in(empty_comprator_in),
         .par_out(read_add)
     );
 
@@ -88,18 +88,36 @@ module Datapath #(
         .par_out(empty_comprator_in)
     );
 
-    comparator #(.SIZE(SIZE))
-    full_comprator
-    (
-        .a(full_comprator_in),
-        .b(read_add),
-        .bte(full)
-    );
+
+
+    reg temp_full;
+    integer i; 
+
+
+    always @(*) begin
+        temp_full = 1'b0; 
+        for (i = 1; i <= K + 1; i = i + 1) begin
+            if ((write_add + i) == read_add)
+                temp_full = 1'b1;
+        end
+    end
+
+    assign full = temp_full;
+
+
+
+    // comparator #(.SIZE(SIZE))
+    // full_comprator
+    // (
+    //     .a(full_comprator_in),
+    //     .b(read_add),
+    //     .bte(full)
+    // );
 
     comparator #(.SIZE(SIZE))
     empty_comprator
     (
-        .a(empty_comprator_in),
+        .a(read_add),
         .b(write_add),
         .bte(empty)
     );
