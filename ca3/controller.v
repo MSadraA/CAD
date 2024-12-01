@@ -11,10 +11,10 @@ module controller (
     output reg shift_right,
     output reg done
 );
-    parameter [3:0] Idle = 4'd0 , Init = 4'd1 ,  Count = 4'd2 , Load = 4'd3 , 
-    Shift = 4'd4 , Done = 4'd5;
+    parameter [2:0] Idle = 3'd0 , Init = 3'd1 ,  Count = 3'd2 , Load = 3'd3 , 
+    Shift = 3'd4 , Done = 3'd5;
 
-    reg [3:0] ps , ns;
+    reg [2:0] ps , ns;
 
     always @(*) begin
         case (ps)
