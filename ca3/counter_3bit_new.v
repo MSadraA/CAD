@@ -1,33 +1,36 @@
-module counter_3bit_new (
+module Counter #(
+    parameter WIDTH = 3
+) (
     input clk,
     input rst,
-    input up_cnt_en,
-    input down_cnt_en,
-    output reg [2:0] par_out,
-    output carry_out
+    input en,
+    input load,
+    input [WIDTH-1:0] in,
+    output wire co
 );
-    wire [2:0] next_par_out;
+    wire [WIDTH-1:0] adder_out;
+    wire [WIDTH-1:0] counter;
+    wire co_add;
 
-    s2 counter_logic(
-        .D00(par_out),
-        .D01(par_out + 1),
-        .D10(par_out - 1),
-        .D11(par_out),
-        .A1(up_cnt_en),
-        .B1(down_cnt_en),
-        .A0(1'b1),
-        .B0(1'b0),
-        .clr(rst),
-        .clk(clk),
-        .out(next_par_out)
-    );
+    adder #(.WIDTH(WIDTH)) adder_inst(.in1(counter), .in2(3'b000), .cin(en), .out(adder_out), .co(co));
 
-    always @(posedge clk or posedge rst) begin
-        if (rst)
-            par_out <= 3'b0;
-        else
-            par_out <= next_par_out;
-    end
 
-    assign carry_out = ((par_out == 3'b111) && up_cnt_en) || ((par_out == 3'b000) && down_cnt_en);
+    genvar i;
+
+    generate
+        for (i = 0; i < WIDTH; i = i + 1) begin : register_block
+            S2 reg_inst (
+                .A0(en),
+                .B0(en),
+                .A1(load),
+                .B1(load),
+                .D({in[i], in[i], adder_out[i], counter[i]}),
+                .CLK(clk),
+                .CLR(rst),
+                .out(counter[i])
+            );
+        end
+    endgenerate
+
+
 endmodule

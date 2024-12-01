@@ -1,4 +1,4 @@
-module shift_reg_16bit_new (
+module shift_register_19bit_new #(
     input clk,
     input rst,
     input ld,
@@ -10,28 +10,23 @@ module shift_reg_16bit_new (
     output MSB_out,
     output LSB_out
 );
-    wire shift_select, load_select;
-    wire [15:0] next_par_out;
 
-    c1 shift_decision(
-        .A0(par_out[15:1]),
-        .A1({par_out[14:0], 1'b0}),
-        .SA(shl_en),
-        .B0(par_out[15:1]),
-        .B1(par_in),
-        .SB(ld),
-        .S0(shr_en),
-        .S1(ld | shl_en),
-        .f(next_par_out)
+s2 reg_ins (
+        .D00(par_out),                            // No operation
+        .D01(par_in),                             // Load parallel input
+        .D10({par_out[14:0], 1'b0}),              // Shift left
+        .D11({ser_in_l, par_out[15:1]}),          // Shift right
+        .A1(ld),                                  // Select load
+        .B1(shl_en | shr_en),                     // Select shift (left or right)
+        .A0(shl_en),                              // Differentiate left shift
+        .B0(shr_en),                              // Differentiate right shift
+        .clr(rst),                                // Reset
+        .clk(clk),                                // Clock
+        .out(next_par_out)                        // Output next state
     );
 
-    always @(posedge clk or posedge rst) begin
-        if (rst)
-            par_out <= 16'b0;
-        else
-            par_out <= next_par_out;
-    end
-
+    assign out = data;
     assign MSB_out = par_out[15];
     assign LSB_out = par_out[0];
+
 endmodule
