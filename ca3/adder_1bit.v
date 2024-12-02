@@ -8,8 +8,8 @@ module adder_1bit (
 
     wire A_inv;
     inv_mod inv_inst (
-        .A(A),
-        .out(A_inv)
+        .a(A),
+        .b(A_inv)
     );
 
     C1 sum (

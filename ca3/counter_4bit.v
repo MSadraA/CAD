@@ -3,7 +3,6 @@ module counter_4bit(
     input rst,
     input up_cnt_en,
     input down_cnt_en,
-    input [3:0] par_in,
     output [3:0] par_out,
     output wire carry_out
 );
@@ -21,11 +20,11 @@ module counter_4bit(
             S2 reg_inst (
                 .A0(up_cnt_en),
                 .B0(up_cnt_en),
-                .A1(load),
-                .B1(load),
-                .D({par_in[i], par_in[i], adder_out[i], counter[i]}),
-                .CLK(clk),
-                .CLR(rst),
+                .A1(down_cnt_en),
+                .B1(down_cnt_en),
+                .D({counter[i], adder_out[i], adder_out[i], counter[i]}),
+                .clk(clk),
+                .clr(rst),
                 .out(counter[i])
             );
         end
