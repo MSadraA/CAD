@@ -1,77 +1,86 @@
-module C1(input A0 , A1 , SA , B0 , B1 ,SB , S0 , S1,output f) ;
+module C1(
+    input A0, A1, SA,
+    input B0, B1, SB,
+    input S0, S1,
+    output F
+);
  initial begin 
-      $system("c1.exe ");
+      $system("../codes/c1.out");
     end
-wire f1 , f2 , s2; 
-assign f1 = (SA)? A1:A0;
-assign f2 = (SB)? B1:B0;
-assign s2 = S0|S1;
-assign f=(s2)?f2:f1;
-endmodule
-module C2 (input D00 , D01 ,D10 , D11 , A1 , B1 , A0 , B0 , output reg out);
-    integer fd ;
-   initial begin 
-      $system("c2.exe ");
-    end
-    wire s0 , s1; 
-    assign s1 = A1 | B1 ;
-    assign s0 = A0 & B0 ;
-    always @(*)
-    begin 
-      if (s1 == 1 && s0 == 1)
-      begin
-        out = D11;
-      end
-      if (s1 == 1 && s0 == 0)
-      begin
-        out = D10;
-      end
-      if (s1 == 0 && s0 == 1)
-      begin
-        out = D01;
-      end
-      if (s1 == 0 && s0 == 0)
-      begin
-        out = D00;
-      end
-    end
-endmodule
-module FDCP(
-  input clk , CLR, D, 
-  output reg Q);
+    wire F1, F2, S2;
 
-  always @(posedge clk or posedge CLR)
-    if(CLR)
-      Q <= 0;
-    else
-      Q <= D;
+    assign F1 = SA ? A1 : A0;
+    assign F2 = SB ? B1 : B0;
+    assign S2 = S1 | S0;
+    assign F = S2 ? F2 : F1;
 endmodule
-module S1(input D00 , D01 ,D10 , D11 , A1 , B1 , A0 , clr , clk , output out);
- initial begin 
-      $system("s2-s1.exe ");
-    end
-    wire s0 , s1 ,d; 
-    assign s1 = A1 | B1 ;
-    assign s0 = A0 & clr ;
-    assign d= ({s1,s0}== 2'd0)? D00: 
-              ({s1,s0}==2'd1)? D01: 
-              ({s1,s0}==2'd2)? D10: 
-              ({s1,s0}==2'd3)? D11 :
-                    2'bz;
-    FDCP ff(clk , clr , d, out) ;
 
-endmodule
-module S2(input D00 , D01 ,D10 , D11 , A1 , B1 , A0,B0 , clr , clk , output out);
+module C2(
+    input A0, B0, A1, B1,
+    input [3:0] D,
+    output out
+);
  initial begin 
-      $system("s2-s1.exe ");
+      $system("../codes/c2.out");
     end
-     wire s0 , s1 ,d; 
-    assign s1 = A1 | B1 ;
-    assign s0 = A0 & B0;
-    assign d= ({s1,s0}== 2'd0)? D00: 
-              ({s1,s0}==2'd1)? D01: 
-              ({s1,s0}==2'd2)? D10: 
-              ({s1,s0}==2'd3)? D11 :
-                    2'bz;
-    FDCP ff (clk , clr , d, out) ;     
+    wire S0, S1;
+
+    assign S0 = A0 & B0;
+    assign S1 = A1 | B1;
+
+    assign out = D[{S1, S0}];
+endmodule
+
+module S1(
+    input A0, B0, A1, B1,
+    input [3:0] D,
+    input CLK, CLR,
+    output reg out
+);
+ initial begin 
+      $system("../codes/s.out");
+    end
+    wire S0, S1;
+    wire [1:0] select;
+    wire mux_out;
+
+    assign S0 = A0 & B0; 
+    assign S1 = A1 | B1; 
+    assign select = {S1, S0}; 
+
+    assign mux_out = D[select];
+
+    always @(posedge CLK or posedge CLR) begin
+        if (CLR)
+            out <= 0;
+        else
+            out <= mux_out;
+    end
+endmodule
+
+module S2(
+    input A0, B0, A1, B1,
+    input [3:0] D,
+    input CLK, CLR,
+    output reg out
+);
+ initial begin 
+      $system("../codes/s.out");
+    end
+    wire S0, S1;
+    wire [1:0] select;
+    wire mux_out;
+
+    assign S0 = A0 & B0; 
+    assign S1 = A1 | B1;
+    assign select = {S1, S0}; 
+
+    assign mux_out = D[select];
+
+    always @(posedge CLK or posedge CLR) begin
+        if (CLR)
+            out <= 0;
+        else
+            out <= mux_out;
+    end
 endmodule
