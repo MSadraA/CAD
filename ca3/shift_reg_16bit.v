@@ -10,16 +10,23 @@ module shift_reg_16bit (
     output MSB_out,
     output LSB_out
 );
-    always @(posedge clk , posedge rst) begin
-        if(rst) par_out <= 16'b0;
-        else begin
-            if(ld) par_out <= par_in;
-            else if(shl_en) par_out <= {par_out[14:0], 1'b0};
-            else if(shr_en) par_out  <= {ser_in_l, par_out[15:1]};
-        end
-    end
 
+s2 reg_ins (
+        .D00(par_out),                            // No operation
+        .D01(par_in),                             // Load parallel input
+        .D10({par_out[14:0], 1'b0}),              // Shift left
+        .D11({ser_in_l, par_out[15:1]}),          // Shift right
+        .A1(ld),                                  // Select load
+        .B1(shl_en | shr_en),                     // Select shift (left or right)
+        .A0(shl_en),                              // Differentiate left shift
+        .B0(shr_en),                              // Differentiate right shift
+        .clr(rst),                                // Reset
+        .clk(clk),                                // Clock
+        .out(next_par_out)                        // Output next state
+    );
+
+    assign out = next_par_out;
     assign MSB_out = par_out[15];
     assign LSB_out = par_out[0];
-    
+
 endmodule

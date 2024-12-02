@@ -1,4 +1,4 @@
-module Counter(
+module counter_3bit(
     input clk,
     input rst,
     input en,
