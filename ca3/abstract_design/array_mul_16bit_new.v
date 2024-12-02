@@ -1,16 +1,18 @@
-module array_mul_16bit (
-    input wire [7:0] a,
-    input wire [7:0] b,
-    output wire [15:0] mul
+module array_mul_16bit_new #(
+    parameter WIDTH = 8
+) (
+    input wire [WIDTH-1:0] a,
+    input wire [WIDTH-1:0] b,
+    output wire [2*WIDTH-1:0] mul
 );
     
-    wire [8:0][8:0] xv, yv, pv, cv;
+    wire [WIDTH:0][WIDTH:0] xv, yv, pv, cv;
 
     genvar i, j;
 
     generate
-        for (i = 0; i < 8; i = i + 1) begin : row
-            for (j = 0; j < 8; j = j + 1) begin : column
+        for (i = 0; i < WIDTH; i = i + 1) begin : row
+            for (j = 0; j < WIDTH; j = j + 1) begin : column
                 bit_multiplier inst(
                     .xi(xv[i][j]),
                     .yi(yv[i][j]),
@@ -26,14 +28,14 @@ module array_mul_16bit (
     endgenerate
 
     generate
-        for (i = 0; i < 8; i = i + 1) begin : xv_gen
+        for (i = 0; i < WIDTH; i = i + 1) begin : xv_gen
             assign xv[i][0] = a[i];
             assign cv[i][0] = 1'b0;
             assign pv[0][i + 1] = 1'b0;
-            assign pv[i + 1][8] = cv[i][8];
+            assign pv[i + 1][WIDTH] = cv[i][WIDTH];
             assign yv[0][i] = b[i];
             assign mul[i] = pv[i + 1][0];
-            assign mul[i + 8] = pv[8][i + 1];
+            assign mul[i + WIDTH] = pv[WIDTH][i + 1];
         end
     endgenerate
 
@@ -72,10 +74,10 @@ module bit_multiplier
     );
 
     wire inv_co;
-    inv_mod not_co
+    not_mod not_co
     (
-        .a(co),
-        .b(inv_co)
+        .A(co),
+        .out(inv_co)
     );
 
     wire or_pi_ci;
@@ -94,43 +96,6 @@ module bit_multiplier
         .out(po)
     );
 
-endmodule
-
-
-module or_mod
-(
-    input a, b,
-    output y
-);
-    C1 or_inst (
-        .A0(1'b0),
-        .A1(1'b0),
-        .SA(1'b0),
-        .B0(1'b1),
-        .B1(1'b1),
-        .SB(1'b1),
-        .S0(a),
-        .S1(b),
-        .F(y)
-    );
-endmodule
-
-module and_mod
-(
-    input a, b,
-    output y
-);
-    C1 and_inst (
-        .A0(1'b0),
-        .A1(b),
-        .SA(a),
-        .B0(1'b0),
-        .B1(1'b0),
-        .SB(1'b0),
-        .S0(1'b0),
-        .S1(1'b0),
-        .F(y)
-    );
 endmodule
 
 

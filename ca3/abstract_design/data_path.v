@@ -24,25 +24,18 @@ module data_path (
     wire [15:0] mul_out;
 
     wire zero1 , zero2;
-    wire shift_right_wire;
-
+    
     shift_reg_16bit reg1 (
         .clk(clk),
         .rst(rst),
         .ld(ld1),
         .shl_en(shl_en1),
-        .shr_en(shift_right_wire),
+        .shr_en(shift_right && ~zero),
         .par_in(mux_out1),
         .ser_in_l(1'b0),
         .par_out(reg1_out),
         .MSB_out(msb_out1),
         .LSB_out(LSB_out)
-    );
-
-    inv_and inv1 (
-        .a(shift_right),
-        .b(zero),
-        .y(shift_right_wire)
     );
 
 
@@ -51,7 +44,7 @@ module data_path (
         .rst(rst),
         .ld(ld2),
         .shl_en(shl_en2),
-        .shr_en(shift_right_wire),
+        .shr_en(shift_right && ~zero),
         .par_in(mux_out2),
         .ser_in_l(LSB_out),
         .par_out(reg2_out),
@@ -80,38 +73,23 @@ module data_path (
     );
 
     wire [3:0] cnt_out1;
-    wire cnt1_and_wire;
-
-    and_gate and1(
-        .a(zero1),
-        .b(shift_right),
-        .y(cnt1_and_wire)
-    );
 
     counter_4bit cnt1 (
         .clk(clk),
         .rst(rst),
         .up_cnt_en(shl_en1),
-        .down_cnt_en(cnt1_and_wire),
+        .down_cnt_en(zero1 && shift_right),
         .par_out(cnt_out1), 
         .carry_out(co1)
     );
 
     wire [3:0] cnt_out2;
 
-    wire cnt2_and_wire;
-
-    inv_and and2 (
-        .a(shift_right),
-        .b(zero1),
-        .y(cnt2_and_wire)
-    );
-
     counter_4bit cnt2 (
         .clk(clk),  
         .rst(rst),
         .up_cnt_en(shl_en2),
-        .down_cnt_en(cnt2_and_wire),
+        .down_cnt_en(~zero1 && shift_right),
         .par_out(cnt_out2),
         .carry_out(co2)
     );
@@ -137,26 +115,16 @@ module data_path (
         .c(count_done)
     );
 
-    or_gate zero1_ins(
-        .a(cnt_out1),
-        .y(zero1)
-    );
+    // nand_try_state nand1 (
+    //     .en(shift_right),
+    //     .a(co1),
+    //     .b(co2),
+    //     .c(shift_right)
+    // );
 
-    or_gate zero2_ins(
-        .a(cnt_out2),
-        .y(zero2)   
-    );
-
-    nor_try_state zer_ins(
-        .en(1'b1),
-        .a(zero1),
-        .b(zero2),
-        .c(zero)
-    );
-
-    // assign zero1 = |cnt_out1;
-    // assign zero2 = |cnt_out2;
-    // assign zero = ~(zero1 || zero2);    
+    assign zero1 = |cnt_out1;
+    assign zero2 = |cnt_out2;
+    assign zero = ~(zero1 || zero2);    
 
     assign out = {reg1_out , reg2_out};
     

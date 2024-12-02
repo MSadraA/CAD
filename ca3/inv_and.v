@@ -8,7 +8,7 @@ module inv_and
         .A1(a),
         .B0(b),
         .B1(a),
-        .D({1'b0, 1'b0, 1'b1, 1'b0})
+        .D({1'b0, 1'b0, 1'b1, 1'b0}),
         .out(y)
     );
 endmodule
