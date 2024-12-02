@@ -34,7 +34,7 @@ endmodule
 module S1(
     input A0, B0, A1, B1,
     input [3:0] D,
-    input CLK, CLR,
+    input clk, clr,
     output reg out
 );
  initial begin 
@@ -50,8 +50,8 @@ module S1(
 
     assign mux_out = D[select];
 
-    always @(posedge CLK or posedge CLR) begin
-        if (CLR)
+    always @(posedge clk or posedge clr) begin
+        if (clr)
             out <= 0;
         else
             out <= mux_out;
@@ -61,7 +61,7 @@ endmodule
 module S2(
     input A0, B0, A1, B1,
     input [3:0] D,
-    input CLK, CLR,
+    input clk, clr,
     output reg out
 );
  initial begin 
@@ -77,8 +77,8 @@ module S2(
 
     assign mux_out = D[select];
 
-    always @(posedge CLK or posedge CLR) begin
-        if (CLR)
+    always @(posedge clk or posedge clr) begin
+        if (clr)
             out <= 0;
         else
             out <= mux_out;

@@ -11,11 +11,8 @@ module shift_reg_16bit (
     output LSB_out
 );
 
-s2 reg_ins (
-        .D00(par_out),                            // No operation
-        .D01(par_in),                             // Load parallel input
-        .D10({par_out[14:0], 1'b0}),              // Shift left
-        .D11({ser_in_l, par_out[15:1]}),          // Shift right
+s2 reg_ins ( 
+        .D({par_out, par_in, {par_out[14:0], 1'b0}, {ser_in_l, par_out[15:1]}})     
         .A1(ld),                                  // Select load
         .B1(shl_en | shr_en),                     // Select shift (left or right)
         .A0(shl_en),                              // Differentiate left shift
