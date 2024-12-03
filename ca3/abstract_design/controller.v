@@ -7,6 +7,7 @@ module controller (
     output reg ld1,
     output reg ld2,
     output reg sel,
+    output reg sel2,
     output reg shift_left,
     output reg shift_right,
     output reg done
@@ -28,12 +29,12 @@ module controller (
     end
 
     always @(ps) begin
-        {ld1 , ld2 , sel , shift_left , shift_right , done} = 6'b0;
+        {ld1 , ld2 , sel , shift_left , shift_right , done , sel2} = 7'b0;
         case (ps)
             Init : begin ld1 = 1'b1 ; ld2 = 1'b1 ; end
             Count : begin shift_left = 1'b1; end
             Load : begin sel = 1'b1; ld1 = 1'b1; ld2 = 1'b1; end
-            Shift : begin shift_right = 1'b1 ;end
+            Shift : begin shift_right = 1'b1 ; sel2 = 1'b1; end
             Done : begin done = 1'b1; end
         endcase
     end

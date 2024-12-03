@@ -1,13 +1,14 @@
-module mux_2_to_1_16bit (
-    input wire [15:0] a,
-    input wire [15:0] b,
+module mux_2_to_1 #(parameter Bit = 16)
+(
+    input wire [Bit - 1:0] a,
+    input wire [ Bit - 1:0] b,
     input wire sel,
-    output wire [15:0] out
+    output wire [Bit - 1:0] out
 );
 
     genvar i;
     generate
-        for (i = 0; i < 16; i = i + 1) begin : mux_block
+        for (i = 0; i < Bit ; i = i + 1) begin : mux_block
             C1 mux_inst (
                 .A0(a[i]),
                 .A1(b[i]),

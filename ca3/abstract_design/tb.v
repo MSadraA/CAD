@@ -3,8 +3,8 @@ module tb (
     reg clk = 0;
     reg rst = 1;
 
-    reg [15:0] x1 = 16'b0;
-    reg [15:0] x2 = 16'b1100001101010111;
+    reg [15:0] x1 = 16'd15;
+    reg [15:0] x2 = 16'd10;
     reg start = 1'b1;
 
     wire [31:0] out;

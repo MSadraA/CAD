@@ -8,11 +8,11 @@ module data_path (
     input ld1,
     input ld2,
     input sel,
+    input sel2,
     output [31:0] out,
     output count_done,
     output zero
 );
-    wire LSB_out;
     wire [15:0] reg1_out;
     wire [15:0] reg2_out;
     wire shl_en1;
@@ -23,19 +23,21 @@ module data_path (
     wire [15:0] mux_out2;
     wire [15:0] mul_out;
 
+    wire ser_in_wire;
+
     wire zero1 , zero2;
     
+    assign ser_in_wire = (sel2) ? msb_out2 : 1'b0;
+
     shift_reg_16bit reg1 (
         .clk(clk),
         .rst(rst),
         .ld(ld1),
-        .shl_en(shl_en1),
-        .shr_en(shift_right && ~zero),
+        .shen((shift_right && ~zero) || shl_en1),
         .par_in(mux_out1),
-        .ser_in_l(1'b0),
+        .ser_in(ser_in_wire),
         .par_out(reg1_out),
-        .MSB_out(msb_out1),
-        .LSB_out(LSB_out)
+        .MSB_out(msb_out1)
     );
 
 
@@ -43,25 +45,30 @@ module data_path (
         .clk(clk),
         .rst(rst),
         .ld(ld2),
-        .shl_en(shl_en2),
-        .shr_en(shift_right && ~zero),
+        .shen((shift_right && ~zero) || shl_en2),
+        .ser_in(1'b0),
         .par_in(mux_out2),
-        .ser_in_l(LSB_out),
         .par_out(reg2_out),
-        .MSB_out(msb_out2),
-        .LSB_out()
+        .MSB_out(msb_out2)
     );
 
     mux_2_to_1_16bit mux1 (
         .a(x1),
-        .b(mul_out),
+        .b(16'b0),
         .sel(sel),
         .out(mux_out1)
     );
 
+    wire [15:0] rev_out;
+
+    reverse_bits #(16) rev1 (
+        .in(mul_out),
+        .out(rev_out)
+    );
+
     mux_2_to_1_16bit mux2 (
         .a(x2),
-        .b(16'b0),
+        .b(rev_out),
         .sel(sel),
         .out(mux_out2)
     );
@@ -126,6 +133,9 @@ module data_path (
     assign zero2 = |cnt_out2;
     assign zero = ~(zero1 || zero2);    
 
-    assign out = {reg1_out , reg2_out};
+    reverse_bits #(32) rev2 (
+        .in({reg1_out , reg2_out}),
+        .out(out)
+    );
     
 endmodule

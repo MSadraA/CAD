@@ -7,7 +7,7 @@ module adder_1bit (
 );
 
     wire A_inv;
-    inv_mod inv_inst (
+    Not inv_inst (
         .a(A),
         .b(A_inv)
     );

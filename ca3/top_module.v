@@ -8,7 +8,7 @@ module top_module (
     output done
 );
 
-    wire ld1 , ld2 , sel , shift_left , shift_right , count_done , zero;
+    wire ld1 , ld2 , sel , shift_left , shift_right , count_done , zero , sel2;
     controller controller1 (
         .clk(clk),
         .rst(rst),
@@ -20,7 +20,8 @@ module top_module (
         .shift_left(shift_left),
         .shift_right(shift_right),
         .done(done),
-        .zero(zero)
+        .zero(zero) ,
+        .sel2(sel2)
     );
 
     data_path data_path1 (
@@ -35,6 +36,7 @@ module top_module (
         .sel(sel),
         .out(out),
         .count_done(count_done),
-        .zero(zero)
+        .zero(zero) ,
+        .sel2(sel2)
     );
 endmodule

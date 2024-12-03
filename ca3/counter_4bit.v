@@ -7,29 +7,12 @@ module counter_4bit(
     output wire carry_out
 );
     wire [3:0] adder_out;
-    wire [3:0] counter;
-    wire co_add;
 
-    adder adder_inst(.in1(counter), .in2(4'b0000), .cin1(up_cnt_en), .cin2(down_cnt_en), .out(adder_out), .co(co));
+    adder adder_inst(.in(par_out), .up(up_cnt_en), .down(down_cnt_en), .out(adder_out), .co());
 
+    shift_reg #(4) reg_inst(.clk(clk), .rst(rst), .ld(1'b1), .shen(1'b0), .par_in(adder_out), .ser_in(1'b0), .par_out(par_out) , .MSB_out());
 
-    genvar i;
-
-    generate
-        for (i = 0; i < 4; i = i + 1) begin : register_block
-            S2 reg_inst (
-                .A0(up_cnt_en),
-                .B0(up_cnt_en),
-                .A1(down_cnt_en),
-                .B1(down_cnt_en),
-                .D({counter[i], adder_out[i], adder_out[i], counter[i]}),
-                .clk(clk),
-                .clr(rst),
-                .out(counter[i])
-            );
-        end
-    endgenerate
-
+    assign carry_out = par_out[3];
 
 endmodule
 
