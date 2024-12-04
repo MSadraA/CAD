@@ -99,3 +99,4 @@ module or_4bit
         .out(y)
     );
 endmodule
+
