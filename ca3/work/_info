@@ -1,0 +1,729 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA/20.1
+vadder
+Z0 !s110 1733161389
+!i10b 1
+!s100 48JhAi?NKA1hanzFAeRGS3
+Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
+Ia3kNIR@?kCRFM`1fkBm8P3
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 dD:/univrsity/CAD/CAD/ca3
+w1733158402
+8D:/univrsity/CAD/CAD/ca3/adder.v
+FD:/univrsity/CAD/CAD/ca3/adder.v
+!i122 401
+L0 1 30
+Z4 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z5 !s108 1733161389.000000
+!s107 D:/univrsity/CAD/CAD/ca3/adder.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/univrsity/CAD/CAD/ca3/adder.v|
+!i113 1
+Z6 o-work work
+Z7 tCvgOpt 0
+vadder_1bit
+R0
+!i10b 1
+!s100 kg>k>PeQcDMlEi6@JEZ991
+R1
+IK5@^DaYW<g_4E^gIjAn_a1
+R2
+R3
+w1733157812
+8D:/univrsity/CAD/CAD/ca3/adder_1bit.v
+FD:/univrsity/CAD/CAD/ca3/adder_1bit.v
+!i122 402
+Z8 L0 1 32
+R4
+r1
+!s85 0
+31
+R5
+!s107 D:/univrsity/CAD/CAD/ca3/adder_1bit.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/univrsity/CAD/CAD/ca3/adder_1bit.v|
+!i113 1
+R6
+R7
+vand_mod
+R0
+!i10b 1
+!s100 4AD]O]>I[F84[XMCnIVE50
+R1
+IhTbnk7:8J4C0R?c90SP`G2
+R2
+R3
+Z9 w1733160519
+Z10 8D:/univrsity/CAD/CAD/ca3/array_mul_16bit.v
+Z11 FD:/univrsity/CAD/CAD/ca3/array_mul_16bit.v
+!i122 403
+L0 118 17
+R4
+r1
+!s85 0
+31
+R5
+Z12 !s107 D:/univrsity/CAD/CAD/ca3/array_mul_16bit.v|
+Z13 !s90 -reportprogress|300|-work|work|-stats=none|D:/univrsity/CAD/CAD/ca3/array_mul_16bit.v|
+!i113 1
+R6
+R7
+varray_mul_16bit
+R0
+!i10b 1
+!s100 =;dDa6HW6bA6<GQH[SG`20
+R1
+IZW1oiGX[]b;NKiLFkeI681
+R2
+R3
+R9
+R10
+R11
+!i122 403
+Z14 L0 1 40
+R4
+r1
+!s85 0
+31
+R5
+R12
+R13
+!i113 1
+R6
+R7
+vbit_multiplier
+R0
+!i10b 1
+!s100 6[P`^]DWYm6QG0lX2j@B^1
+R1
+IN5YinT<;efXm1S]:AhKgW3
+R2
+R3
+R9
+R10
+R11
+!i122 403
+L0 42 56
+R4
+r1
+!s85 0
+31
+R5
+R12
+R13
+!i113 1
+R6
+R7
+vC1
+Z15 !s110 1733161391
+!i10b 1
+!s100 Oh5n;2^CN;jDbPc473aK31
+R1
+I@UoVJYGZAO?mNkH:CY7BW0
+R2
+R3
+Z16 w1733156179
+Z17 8D:/univrsity/CAD/CAD/ca3/modules.v
+Z18 FD:/univrsity/CAD/CAD/ca3/modules.v
+!i122 413
+Z19 L0 1 16
+R4
+r1
+!s85 0
+31
+Z20 !s108 1733161391.000000
+Z21 !s107 D:/univrsity/CAD/CAD/ca3/modules.v|
+Z22 !s90 -reportprogress|300|-work|work|-stats=none|D:/univrsity/CAD/CAD/ca3/modules.v|
+!i113 1
+R6
+R7
+n@c1
+vc1
+Z23 !s110 1733154316
+!i10b 1
+!s100 >=6Eazi2:l=BJ5YJ45F>12
+R1
+IU<lczef`NL@0EEn:B3<]B3
+R2
+R3
+Z24 w1731176708
+R17
+R18
+!i122 105
+L0 1 10
+R4
+r1
+!s85 0
+31
+Z25 !s108 1733154316.000000
+R21
+R22
+!i113 1
+R6
+R7
+vC2
+R15
+!i10b 1
+!s100 czgkU^Ji3NX>SV]fIhYe83
+R1
+IT7HWHiA]zeVLb0WJ9PFng0
+R2
+R3
+R16
+R17
+R18
+!i122 413
+L0 18 15
+R4
+r1
+!s85 0
+31
+R20
+R21
+R22
+!i113 1
+R6
+R7
+n@c2
+vc2
+R23
+!i10b 1
+!s100 BI?RfNmK?Zm>R34UVI5Z83
+R1
+Ida@bFfQIVzMIYS>?IDCK63
+R2
+R3
+R24
+R17
+R18
+!i122 105
+L0 11 28
+R4
+r1
+!s85 0
+31
+R25
+R21
+R22
+!i113 1
+R6
+R7
+vcontroller
+R0
+!i10b 1
+!s100 B7?I>;oZWYL:N=?oUGORK2
+R1
+I=FYJ]PP;a>91I^cOkb]bB2
+R2
+R3
+Z26 w1733130286
+8D:/univrsity/CAD/CAD/ca3/controller.v
+FD:/univrsity/CAD/CAD/ca3/controller.v
+!i122 404
+L0 1 46
+R4
+r1
+!s85 0
+31
+R5
+!s107 D:/univrsity/CAD/CAD/ca3/controller.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/univrsity/CAD/CAD/ca3/controller.v|
+!i113 1
+R6
+R7
+vcounter_3bit
+!s110 1733158411
+!i10b 1
+!s100 TAiXbG;F2_g2fm0i[V]:G0
+R1
+Iod9lHRo1PNPzAe:GXSCHW3
+R2
+R3
+w1733148766
+8D:/univrsity/CAD/CAD/ca3/counter_3bit.v
+FD:/univrsity/CAD/CAD/ca3/counter_3bit.v
+!i122 249
+Z27 L0 1 34
+R4
+r1
+!s85 0
+31
+!s108 1733158411.000000
+!s107 D:/univrsity/CAD/CAD/ca3/counter_3bit.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/univrsity/CAD/CAD/ca3/counter_3bit.v|
+!i113 1
+R6
+R7
+vcounter_4bit
+R0
+!i10b 1
+!s100 _>2LMm;]klC^d5<48QSMQ0
+R1
+IUC_=0hnX0C37XR8>IV]7b2
+R2
+R3
+w1733159639
+8D:/univrsity/CAD/CAD/ca3/counter_4bit.v
+FD:/univrsity/CAD/CAD/ca3/counter_4bit.v
+!i122 405
+R27
+R4
+r1
+!s85 0
+31
+R5
+!s107 D:/univrsity/CAD/CAD/ca3/counter_4bit.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/univrsity/CAD/CAD/ca3/counter_4bit.v|
+!i113 1
+R6
+R7
+vdata_path
+Z28 !s110 1733161390
+!i10b 1
+!s100 8lQObLZmX2`dla7`9lk?H0
+R1
+Ib5o_LGj0Bhe`azibZO<QN1
+R2
+R3
+R26
+8D:/univrsity/CAD/CAD/ca3/data_path.v
+FD:/univrsity/CAD/CAD/ca3/data_path.v
+!i122 406
+L0 1 131
+R4
+r1
+!s85 0
+31
+Z29 !s108 1733161390.000000
+!s107 D:/univrsity/CAD/CAD/ca3/data_path.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/univrsity/CAD/CAD/ca3/data_path.v|
+!i113 1
+R6
+R7
+vFDCP
+!s110 1733154754
+!i10b 1
+!s100 W7:IP4a8CZ>D>95]^NLBQ3
+R1
+IeEWz[NOWAK@aBSd3hk^1?3
+R2
+R3
+w1733154480
+R17
+R18
+!i122 133
+L0 39 10
+R4
+r1
+!s85 0
+31
+!s108 1733154753.000000
+R21
+R22
+!i113 1
+R6
+R7
+n@f@d@c@p
+vinv_mod
+R28
+!i10b 1
+!s100 OMo]T>S>Wlh>a<R@l>V`B0
+R1
+I_M^H9kdZ_Jl>ZJ;1eil_V2
+R2
+R3
+w1733160292
+8D:/univrsity/CAD/CAD/ca3/inv_mod.v
+FD:/univrsity/CAD/CAD/ca3/inv_mod.v
+!i122 407
+R19
+R4
+r1
+!s85 0
+31
+R29
+!s107 D:/univrsity/CAD/CAD/ca3/inv_mod.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/univrsity/CAD/CAD/ca3/inv_mod.v|
+!i113 1
+R6
+R7
+vmuux_2_to_1_16bit
+Z30 !s110 1733154191
+!i10b 1
+!s100 PPG3LlCB0Fn<mDB26mNe[2
+R1
+IHCijj?[A7d13RL>1W9jYh2
+R2
+R3
+w1733068656
+Z31 8D:/univrsity/CAD/CAD/ca3/mux_2_to_1_16bit.v
+Z32 FD:/univrsity/CAD/CAD/ca3/mux_2_to_1_16bit.v
+!i122 72
+Z33 L0 1 25
+R4
+r1
+!s85 0
+31
+Z34 !s108 1733154191.000000
+Z35 !s107 D:/univrsity/CAD/CAD/ca3/mux_2_to_1_16bit.v|
+Z36 !s90 -reportprogress|300|-work|work|-stats=none|D:/univrsity/CAD/CAD/ca3/mux_2_to_1_16bit.v|
+!i113 1
+R6
+R7
+vmux_2_to_1_16bit
+R28
+!i10b 1
+!s100 RH7d0G==zi77h9iz]<B@j0
+R1
+IMIfkS_D12o<iG8SI3g:6f3
+R2
+R3
+w1733154263
+R31
+R32
+!i122 408
+R33
+R4
+r1
+!s85 0
+31
+R29
+R35
+R36
+!i113 1
+R6
+R7
+vnor_mod
+Z37 !s110 1733160354
+!i10b 1
+!s100 z^[;__29>`LdNS87>KoH02
+R1
+I`C?Zg8]RJb>Xfm[2ORg?k3
+R2
+R3
+Z38 w1733159958
+R10
+R11
+!i122 377
+L0 136 19
+R4
+r1
+!s85 0
+31
+Z39 !s108 1733160354.000000
+R12
+R13
+!i113 1
+R6
+R7
+vnor_try_state
+R28
+!i10b 1
+!s100 W;Flc:RSKQ3W3E1SU7o;:1
+R1
+I8NPCLQ4f[Mg89MD`68@[d0
+R2
+R3
+w1733160146
+8D:/univrsity/CAD/CAD/ca3/nor_try_state.v
+FD:/univrsity/CAD/CAD/ca3/nor_try_state.v
+!i122 409
+L0 1 21
+R4
+r1
+!s85 0
+31
+R29
+!s107 D:/univrsity/CAD/CAD/ca3/nor_try_state.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/univrsity/CAD/CAD/ca3/nor_try_state.v|
+!i113 1
+R6
+R7
+vnot_mod
+!s110 1733159644
+!i10b 1
+!s100 ?hP4_2T19Bi>b6jcW4K<03
+R1
+IlkbfbMf:Kgm9_ZA3Rd=]G2
+R2
+R3
+w1733154740
+R10
+R11
+!i122 313
+L0 117 18
+R4
+r1
+!s85 0
+31
+!s108 1733159644.000000
+R12
+R13
+!i113 1
+R6
+R7
+vor_mod
+R0
+!i10b 1
+!s100 M0HdX5gV:OnXAi5>];gFK1
+R1
+Idg:cW8F3W^Q^RiQffG<G20
+R2
+R3
+R9
+R10
+R11
+!i122 403
+L0 100 17
+R4
+r1
+!s85 0
+31
+R5
+R12
+R13
+!i113 1
+R6
+R7
+vS1
+R15
+!i10b 1
+!s100 zMDLLAZ`0iWAkSYNNa`8a0
+R1
+IejB<c[5EL^S]aDV7^2M2a2
+R2
+R3
+R16
+R17
+R18
+!i122 413
+L0 34 26
+R4
+r1
+!s85 0
+31
+R20
+R21
+R22
+!i113 1
+R6
+R7
+n@s1
+vs1
+R23
+!i10b 1
+!s100 1Q9CHaCnk3`?]EA^G@0Ez1
+R1
+I1OgKfbmY`CAj:zSX^GeDI1
+R2
+R3
+R24
+R17
+R18
+!i122 105
+L0 49 15
+R4
+r1
+!s85 0
+31
+R25
+R21
+R22
+!i113 1
+R6
+R7
+vS2
+R15
+!i10b 1
+!s100 B6Rffjn4mV@?6iPJVgZPE3
+R1
+I?Si4k``gh_`WGz6T<NSCF0
+R2
+R3
+R16
+R17
+R18
+!i122 413
+L0 61 26
+R4
+r1
+!s85 0
+31
+R20
+R21
+R22
+!i113 1
+R6
+R7
+n@s2
+vs2
+R23
+!i10b 1
+!s100 UZ?W6YNI=gdQJ<NN3[ehB3
+R1
+I1:BY5k5k0zGhm;o_`2V?m3
+R2
+R3
+R24
+R17
+R18
+!i122 105
+L0 64 14
+R4
+r1
+!s85 0
+31
+R25
+R21
+R22
+!i113 1
+R6
+R7
+vshift_reg_16bit
+R15
+!i10b 1
+!s100 ZO>Aah_TRS?0G^bh9:TJJ2
+R1
+Ih0M@RPil08fgUamoQZkDP3
+R2
+R3
+w1733156957
+Z40 8D:/univrsity/CAD/CAD/ca3/shift_reg_16bit.v
+Z41 FD:/univrsity/CAD/CAD/ca3/shift_reg_16bit.v
+!i122 410
+L0 1 50
+R4
+r1
+!s85 0
+31
+R29
+Z42 !s107 D:/univrsity/CAD/CAD/ca3/shift_reg_16bit.v|
+Z43 !s90 -reportprogress|300|-work|work|-stats=none|D:/univrsity/CAD/CAD/ca3/shift_reg_16bit.v|
+!i113 1
+R6
+R7
+vshift_register_16bit
+!s110 1733154272
+!i10b 1
+!s100 LiQ7m@3`SaL09oZ=B1Mn<2
+R1
+Id@Q:QY6QY<ZgP;kdY9]CX1
+R2
+R3
+w1733154242
+R40
+R41
+!i122 88
+R8
+R4
+r1
+!s85 0
+31
+!s108 1733154272.000000
+R42
+R43
+!i113 1
+R6
+R7
+vshift_register_19bit
+R30
+!i10b 1
+!s100 1`HRYX6V1O09XWL:g9JP<3
+R1
+I;Xo[MPlzQ32aK1oO1:ih83
+R2
+R3
+w1733154062
+R40
+R41
+!i122 74
+R8
+R4
+r1
+!s85 0
+31
+R34
+R42
+R43
+!i113 1
+R6
+R7
+vtb
+R15
+!i10b 1
+!s100 aml6CKg`ccU=>3=ai9Q5S2
+R1
+IIcF^oam_R26oKVYSkgzkG0
+R2
+R3
+R26
+8D:/univrsity/CAD/CAD/ca3/tb.v
+FD:/univrsity/CAD/CAD/ca3/tb.v
+!i122 411
+L0 1 31
+R4
+r1
+!s85 0
+31
+R20
+!s107 D:/univrsity/CAD/CAD/ca3/tb.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/univrsity/CAD/CAD/ca3/tb.v|
+!i113 1
+R6
+R7
+vtop_module
+R15
+!i10b 1
+!s100 XNQ=P6ARRnTiL;d=[T<i]2
+R1
+I[2@6NaOCNz0YcaBFT_]2F1
+R2
+R3
+R26
+8D:/univrsity/CAD/CAD/ca3/top_module.v
+FD:/univrsity/CAD/CAD/ca3/top_module.v
+!i122 412
+R14
+R4
+r1
+!s85 0
+31
+R20
+!s107 D:/univrsity/CAD/CAD/ca3/top_module.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/univrsity/CAD/CAD/ca3/top_module.v|
+!i113 1
+R6
+R7
+vxor_mod
+R37
+!i10b 1
+!s100 <U3Yl4H<@jBAUI@GbhL;Y3
+R1
+I`]D>K@`Q@946]^i@EV:Uh0
+R2
+R3
+R38
+R10
+R11
+!i122 377
+L0 100 16
+R4
+r1
+!s85 0
+31
+R39
+R12
+R13
+!i113 1
+R6
+R7

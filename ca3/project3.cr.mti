@@ -1,0 +1,57 @@
+D:/univrsity/CAD/CAD/ca3/adder.v {1 {vlog -work work -stats=none D:/univrsity/CAD/CAD/ca3/adder.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module adder
+
+Top level modules:
+	adder
+
+} {} {}} D:/univrsity/CAD/CAD/ca3/top_module.v {1 {vlog -work work -stats=none D:/univrsity/CAD/CAD/ca3/top_module.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module top_module
+
+Top level modules:
+	top_module
+
+} {} {}} D:/univrsity/CAD/CAD/ca3/mux_2_to_1_16bit.v {1 {vlog -work work -stats=none D:/univrsity/CAD/CAD/ca3/mux_2_to_1_16bit.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module mux_2_to_1_16bit
+
+Top level modules:
+	mux_2_to_1_16bit
+
+} {} {}} D:/univrsity/CAD/CAD/ca3/inv_mod.v {1 {vlog -work work -stats=none D:/univrsity/CAD/CAD/ca3/inv_mod.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module inv_mod
+
+Top level modules:
+	inv_mod
+
+} {} {}} D:/univrsity/CAD/CAD/ca3/controller.v {1 {vlog -work work -stats=none D:/univrsity/CAD/CAD/ca3/controller.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module controller
+
+Top level modules:
+	controller
+
+} {} {}} D:/univrsity/CAD/CAD/ca3/adder_1bit.v {1 {vlog -work work -stats=none D:/univrsity/CAD/CAD/ca3/adder_1bit.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module adder_1bit
+
+Top level modules:
+	adder_1bit
+
+} {} {}} D:/univrsity/CAD/CAD/ca3/shift_reg_16bit.v {1 {vlog -work work -stats=none D:/univrsity/CAD/CAD/ca3/shift_reg_16bit.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module shift_reg_16bit
+
+Top level modules:
+	shift_reg_16bit
+
+} {} {}} D:/univrsity/CAD/CAD/ca3/nor_try_state.v {1 {vlog -work work -stats=none D:/univrsity/CAD/CAD/ca3/nor_try_state.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module nor_try_state
+
+Top level modules:
+	nor_try_state
+
+} {} {}}
