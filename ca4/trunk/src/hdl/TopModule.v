@@ -65,7 +65,6 @@ module TopModule(
     .shift_r_valid1(shift_r_valid1),
     .shift_r_valid2(shift_r_valid2)
   );
-
   datapath Datapath
   (
     .clk(clk), 
