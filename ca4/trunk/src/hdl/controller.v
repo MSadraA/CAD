@@ -110,6 +110,4 @@ module controller(
         else
             ps <= ns;
     end
-
-
 endmodule
