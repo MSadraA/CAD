@@ -26,6 +26,5 @@ module up_counter_3bit(
       out <= out + 1'b1;
       end
   end
-  
   assign carry = (out == 3'b111) ? 1'b1 : 1'b0;
 endmodule
