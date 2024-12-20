@@ -1,46 +1,31 @@
-module SRAM(dataIn,dataOut,Addr,CS,WE,RD, Clk );
-// parameters for the width 
+module SRAM
+  # (parameter ADDR_WIDTH = 4,
+     parameter DATA_WIDTH = 32,
+     parameter DEPTH = 16
+    )
 
-parameter ADR   = 8;
+  ( 	input clk,
+   		input [ADDR_WIDTH-1:0] raddr,
+        input [ADDR_WIDTH-1:0] waddr,
+        input [DATA_WIDTH_WIDTH-1:0] din,
+   		output [DATA_WIDTH-1:0]	dout,
+   		input chip_en,
+   		input wen,
+   		input ren
+  );
 
-parameter DAT   = 8;
+  reg [DATA_WIDTH-1:0] 	tmp_data;
+  reg [DATA_WIDTH-1:0] 	mem [DEPTH];
 
-parameter DPTH  = 8;
-//ports
-
-input   [DAT-1:0]  dataIn;
-
-output reg [DAT-1:0]  dataOut;
-
-input   [ADR-1:0]  Addr;
-
-input CS,WE,RD,Clk;
-//internal variables
-reg [DAT-1:0] SRAMs [DPTH-1:0];
-
-always @ (posedge Clk)
-
-begin
-
- if (CS == 1'b1) begin
-
-  if (WE == 1'b1 && RD == 1'b0) begin
-
-   SRAMs [Addr] = dataIn;
-
+  always @ (posedge clk) begin
+    if (chip_en & wen)
+      mem[waddr] <= din;
   end
 
-  else if (RD == 1'b1 && WE == 1'b0) begin
-
-   dataOut = SRAMs [Addr]; 
-
+  always @ (posedge clk) begin
+    if (chip_en & ren)
+    	tmp_data <= mem[raddr];
   end
 
-  else;
-
- end
-
- else;
-
-end
+  assign data = tmp_data;
 endmodule
