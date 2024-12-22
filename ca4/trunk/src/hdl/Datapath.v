@@ -3,7 +3,7 @@ module datapath(
     input rst,
 );
 
-    SRAM ram 
+    RAM ram 
     # (parameter ADDR_WIDTH = 4,
      parameter DATA_WIDTH = 32,
      parameter DEPTH = 16
@@ -13,7 +13,6 @@ module datapath(
         .waddr(),
         .din(),
         .dout(w1),
-        .chip_en(),
         .wen(),
         .ren()
     );
@@ -43,6 +42,7 @@ module datapath(
         .clk(clk),
         .rst(rst),
         .ld(),
+        .clr(),
         .par_in(),
         .par_out(w2)
     );
@@ -87,6 +87,7 @@ module datapath(
         .clk(clk),
         .rst(rst),
         .ld(),
+        .clr(),
         .par_in(w3),
         .par_out(w4)
     );
@@ -97,6 +98,7 @@ module datapath(
         .clk(clk),
         .rst(rst),
         .ld(),
+        .clr(),
         .par_in(w5),
         .par_out(w6)
     );

@@ -1,38 +1,30 @@
-module Ram 
-#(
-    parameter WIDTH = 16,
-    parameter SIZE = 8
-)
-(
-    input clk,
-    input rst,
-    input ld,
-    input [(SIZE*WIDTH)-1:0] par_in,      
-    output reg [(SIZE*WIDTH)-1:0] par_out 
-);
+module RAM
+  # (parameter ADDR_WIDTH = 4,
+     parameter DATA_WIDTH = 32,
+     parameter DEPTH = 16
+    )
 
-   
-    reg [WIDTH-1:0] regblock [0:SIZE-1]; 
+  ( 	input clk,
+   		input [ADDR_WIDTH-1:0] raddr,
+        input [ADDR_WIDTH-1:0] waddr,
+        input [DATA_WIDTH_WIDTH-1:0] din,
+   		output [DATA_WIDTH-1:0]	dout,
+   		input wen,
+   		input ren
+  );
 
-    integer i;
+  reg [DATA_WIDTH-1:0] 	tmp_data;
+  reg [DATA_WIDTH-1:0] 	mem [DEPTH];
 
-    always @(posedge clk) begin
-        if (rst) begin
-            for (i = 0; i < SIZE; i = i + 1) begin
-                regblock[i] <= {WIDTH{1'b0}};
-            end
-        end else if (ld) begin
-            for (i = 0; i < SIZE; i = i + 1) begin
-                regblock[i] <= par_in[i*WIDTH +: WIDTH];
-            end
-        end
-    end
+  always @ (posedge clk || posedge wen) begin
+    if (wen)
+      mem[waddr] <= din;
+  end
 
-    always @(*) begin
-        for (i = 0; i < SIZE; i = i + 1) begin
-            par_out[i*WIDTH +: WIDTH] = regblock[i];
-        end
-    end
+  always @ (posedge clk || ren) begin
+    if (ren)
+    	tmp_data <= mem[raddr];
+  end
 
+  assign data = tmp_data;
 endmodule
-
