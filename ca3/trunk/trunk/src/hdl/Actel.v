@@ -4,7 +4,9 @@ module C1(
     input S0, S1,
     output F
 );
-
+ initial begin 
+      $system("../codes/c1.out");
+    end
     wire F1, F2, S2;
 
     assign F1 = SA ? A1 : A0;
@@ -18,7 +20,9 @@ module C2(
     input [3:0] D,
     output out
 );
-
+ initial begin 
+      $system("../codes/c2.out");
+    end
     wire S0, S1;
 
     assign S0 = A0 & B0;
@@ -33,7 +37,9 @@ module S1(
     input clk, clr,
     output reg out
 );
-
+ initial begin 
+      $system("../codes/s.out");
+    end
     wire S0, S1;
     wire [1:0] select;
     wire mux_out;
@@ -45,7 +51,7 @@ module S1(
     assign mux_out = D[select];
 
     always @(posedge clk or posedge clr) begin
-        if (clr)
+        if (CLR)
             out <= 0;
         else
             out <= mux_out;
@@ -58,7 +64,9 @@ module S2(
     input clk, clr,
     output reg out
 );
-
+ initial begin 
+      $system("../codes/s.out");
+    end
     wire S0, S1;
     wire [1:0] select;
     wire mux_out;
