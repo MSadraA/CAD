@@ -11,6 +11,7 @@ module If_Map_generator #(
     input CLR,
     input ptr_cnt_en,
     input ld_ptr_row,
+    input sel,
     output finish_row,
     output input_Raddr,
     output row_end
