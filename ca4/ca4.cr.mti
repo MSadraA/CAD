@@ -1,0 +1,99 @@
+/home/sadra/Documents/Codes/CAD/ca4/Filter_SP.v {1 {vlog -work work -stats=none /home/sadra/Documents/Codes/CAD/ca4/Filter_SP.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module Filter_SP
+
+Top level modules:
+	Filter_SP
+
+} {} {}} /home/sadra/Documents/Codes/CAD/ca4/Ram.v {1 {vlog -work work -stats=none /home/sadra/Documents/Codes/CAD/ca4/Ram.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module RAM
+
+Top level modules:
+	RAM
+
+} {} {}} /home/sadra/Documents/Codes/CAD/ca4/TopModule.v {1 {vlog -work work -stats=none /home/sadra/Documents/Codes/CAD/ca4/TopModule.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module TopModule
+
+Top level modules:
+	TopModule
+
+} {} {}} /home/sadra/Documents/Codes/CAD/ca4/buffer.v {1 {vlog -work work -stats=none /home/sadra/Documents/Codes/CAD/ca4/buffer.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module Buffer
+
+Top level modules:
+	Buffer
+
+} {} {}} /home/sadra/Documents/Codes/CAD/ca4/If_Map_generator.v {1 {vlog -work work -stats=none /home/sadra/Documents/Codes/CAD/ca4/If_Map_generator.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module If_Map_generator
+
+Top level modules:
+	If_Map_generator
+
+} {} {}} /home/sadra/Documents/Codes/CAD/ca4/IF_read_controller.v {1 {vlog -work work -stats=none /home/sadra/Documents/Codes/CAD/ca4/IF_read_controller.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module IF_read_controller
+
+Top level modules:
+	IF_read_controller
+
+} {} {}} /home/sadra/Documents/Codes/CAD/ca4/Write_controller.v {1 {vlog -work work -stats=none /home/sadra/Documents/Codes/CAD/ca4/Write_controller.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module Write_controller
+
+Top level modules:
+	Write_controller
+
+} {} {}} /home/sadra/Documents/Codes/CAD/ca4/IF_Map_SP.v {1 {vlog -work work -stats=none /home/sadra/Documents/Codes/CAD/ca4/IF_Map_SP.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module IF_Map_SP
+
+Top level modules:
+	IF_Map_SP
+
+} {} {}} /home/sadra/Documents/Codes/CAD/ca4/Datapath.v {1 {vlog -work work -stats=none /home/sadra/Documents/Codes/CAD/ca4/Datapath.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module datapath
+
+Top level modules:
+	datapath
+
+} {} {}} /home/sadra/Documents/Codes/CAD/ca4/Counter.v {1 {vlog -work work -stats=none /home/sadra/Documents/Codes/CAD/ca4/Counter.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module Counter
+
+Top level modules:
+	Counter
+
+} {} {}} /home/sadra/Documents/Codes/CAD/ca4/Filter_generator.v {1 {vlog -work work -stats=none /home/sadra/Documents/Codes/CAD/ca4/Filter_generator.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module Filter_generator
+
+Top level modules:
+	Filter_generator
+
+} {} {}} /home/sadra/Documents/Codes/CAD/ca4/Filter_read_controller.v {1 {vlog -work work -stats=none /home/sadra/Documents/Codes/CAD/ca4/Filter_read_controller.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module Filter_read_controller
+
+Top level modules:
+	Filter_read_controller
+
+} {} {}} /home/sadra/Documents/Codes/CAD/ca4/register.v {1 {vlog -work work -stats=none /home/sadra/Documents/Codes/CAD/ca4/register.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module Register
+
+Top level modules:
+	Register
+
+} {} {}} /home/sadra/Documents/Codes/CAD/ca4/fifo_buffer.v {1 {vlog -work work -stats=none /home/sadra/Documents/Codes/CAD/ca4/fifo_buffer.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module Fifo_buffer
+
+Top level modules:
+	Fifo_buffer
+
+} {} {}}

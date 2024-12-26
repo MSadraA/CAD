@@ -95,3 +95,99 @@
 # Compile of TopModule.v was successful.
 # Compile of Write_controller.v was successful.
 # 15 compiles, 0 failed with no errors.
+# Compile of buffer.v was successful.
+# Compile of Counter.v was successful.
+# Compile of Datapath.v failed with 3 errors.
+# Compile of fifo_buffer.v was successful.
+# Compile of Filter_generator.v was successful.
+# Compile of Filter_read_controller.v was successful.
+# Compile of Filter_SP.v was successful.
+# Compile of If_Map_generator.v was successful.
+# Compile of IF_Map_SP.v was successful.
+# Compile of IF_read_controller.v was successful.
+# Compile of Main_controller.v failed with 1 errors.
+# Compile of Ram.v was successful.
+# Compile of register.v was successful.
+# Compile of TopModule.v failed with 1 errors.
+# Compile of Write_controller.v was successful.
+# 15 compiles, 3 failed with 5 errors.
+# Compile of buffer.v was successful.
+# Compile of Counter.v was successful.
+# Compile of Datapath.v was successful.
+# Compile of fifo_buffer.v was successful.
+# Compile of Filter_generator.v was successful.
+# Compile of Filter_read_controller.v was successful.
+# Compile of Filter_SP.v was successful.
+# Compile of If_Map_generator.v was successful.
+# Compile of IF_Map_SP.v was successful.
+# Compile of IF_read_controller.v was successful.
+# Compile of Main_controller.v failed with 1 errors.
+# Compile of Ram.v was successful.
+# Compile of register.v was successful.
+# Compile of TopModule.v failed with 1 errors.
+# Compile of Write_controller.v was successful.
+# 15 compiles, 2 failed with 2 errors.
+# Compile of buffer.v was successful.
+# Compile of Counter.v was successful.
+# Compile of Datapath.v was successful.
+# Compile of fifo_buffer.v was successful.
+# Compile of Filter_generator.v was successful.
+# Compile of Filter_read_controller.v was successful.
+# Compile of Filter_SP.v was successful.
+# Compile of If_Map_generator.v was successful.
+# Compile of IF_Map_SP.v was successful.
+# Compile of IF_read_controller.v was successful.
+# Compile of Main_controller.v failed with 1 errors.
+# Compile of Ram.v was successful.
+# Compile of register.v was successful.
+# Compile of TopModule.v failed with 1 errors.
+# Compile of Write_controller.v was successful.
+# 15 compiles, 2 failed with 2 errors.
+# Compile of buffer.v was successful.
+# Compile of Counter.v was successful.
+# Compile of Datapath.v was successful.
+# Compile of fifo_buffer.v was successful.
+# Compile of Filter_generator.v was successful.
+# Compile of Filter_read_controller.v was successful.
+# Compile of Filter_SP.v was successful.
+# Compile of If_Map_generator.v was successful.
+# Compile of IF_Map_SP.v was successful.
+# Compile of IF_read_controller.v was successful.
+# Compile of Main_controller.v was successful.
+# Compile of Ram.v was successful.
+# Compile of register.v was successful.
+# Compile of TopModule.v failed with 1 errors.
+# Compile of Write_controller.v was successful.
+# 15 compiles, 1 failed with 1 error.
+# Compile of buffer.v was successful.
+# Compile of Counter.v was successful.
+# Compile of Datapath.v was successful.
+# Compile of fifo_buffer.v was successful.
+# Compile of Filter_generator.v was successful.
+# Compile of Filter_read_controller.v was successful.
+# Compile of Filter_SP.v was successful.
+# Compile of If_Map_generator.v was successful.
+# Compile of IF_Map_SP.v was successful.
+# Compile of IF_read_controller.v was successful.
+# Compile of Main_controller.v was successful.
+# Compile of Ram.v was successful.
+# Compile of register.v was successful.
+# Compile of TopModule.v was successful.
+# Compile of Write_controller.v was successful.
+# 15 compiles, 0 failed with no errors.
+# Compile of buffer.v was successful.
+# Compile of Counter.v was successful.
+# Compile of Datapath.v was successful.
+# Compile of fifo_buffer.v was successful.
+# Compile of Filter_generator.v was successful.
+# Compile of Filter_read_controller.v was successful.
+# Compile of Filter_SP.v was successful.
+# Compile of If_Map_generator.v was successful.
+# Compile of IF_Map_SP.v was successful.
+# Compile of IF_read_controller.v was successful.
+# Compile of Main_controller.v was successful.
+# Compile of Ram.v was successful.
+# Compile of register.v was successful.
+# Compile of TopModule.v was successful.
+# Compile of Write_controller.v was successful.
+# 15 compiles, 0 failed with no errors.

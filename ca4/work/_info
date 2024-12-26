@@ -10,7 +10,7 @@ z2
 cModel Technology
 d/home/sadra
 vBuffer
-Z0 !s110 1735221280
+Z0 !s110 1735223770
 !i10b 1
 !s100 ]Q4@EKQAnb=`Mh1U<;[2J0
 Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
@@ -20,13 +20,13 @@ Z3 d/home/sadra/Documents/Codes/CAD/ca4
 Z4 w1731770820
 8/home/sadra/Documents/Codes/CAD/ca4/buffer.v
 F/home/sadra/Documents/Codes/CAD/ca4/buffer.v
-!i122 58
+!i122 153
 L0 3 65
 Z5 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z6 !s108 1735221280.000000
+Z6 !s108 1735223770.000000
 !s107 /home/sadra/Documents/Codes/CAD/ca4/buffer.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/sadra/Documents/Codes/CAD/ca4/buffer.v|
 !i113 1
@@ -44,7 +44,7 @@ R3
 w1735154045
 8/home/sadra/Documents/Codes/CAD/ca4/Counter.v
 F/home/sadra/Documents/Codes/CAD/ca4/Counter.v
-!i122 59
+!i122 154
 L0 1 22
 R5
 r1
@@ -65,10 +65,10 @@ R1
 I_NPOZW?TSjD4cG@lh4@`Q1
 R2
 R3
-w1735221277
+w1735223366
 8/home/sadra/Documents/Codes/CAD/ca4/Datapath.v
 F/home/sadra/Documents/Codes/CAD/ca4/Datapath.v
-!i122 73
+!i122 155
 L0 1 349
 R5
 r1
@@ -91,8 +91,8 @@ R3
 R4
 8/home/sadra/Documents/Codes/CAD/ca4/fifo_buffer.v
 F/home/sadra/Documents/Codes/CAD/ca4/fifo_buffer.v
-!i122 74
-Z9 L0 1 99
+!i122 156
+L0 1 99
 R5
 r1
 !s85 0
@@ -105,7 +105,7 @@ R7
 R8
 n@fifo_buffer
 vFilter_generator
-Z10 !s110 1735221281
+R0
 !i10b 1
 !s100 f40EW35OaZl9C4g6Q>2ka2
 R1
@@ -115,7 +115,7 @@ R3
 w1735179217
 8/home/sadra/Documents/Codes/CAD/ca4/Filter_generator.v
 F/home/sadra/Documents/Codes/CAD/ca4/Filter_generator.v
-!i122 75
+!i122 157
 L0 1 69
 R5
 r1
@@ -129,7 +129,7 @@ R7
 R8
 n@filter_generator
 vFilter_read_controller
-R10
+R0
 !i10b 1
 !s100 T^EBm<gLaBlW?W^?LO3Fm1
 R1
@@ -139,13 +139,13 @@ R3
 w1735144100
 8/home/sadra/Documents/Codes/CAD/ca4/Filter_read_controller.v
 F/home/sadra/Documents/Codes/CAD/ca4/Filter_read_controller.v
-!i122 76
+!i122 158
 L0 1 70
 R5
 r1
 !s85 0
 31
-Z11 !s108 1735221281.000000
+R6
 !s107 /home/sadra/Documents/Codes/CAD/ca4/Filter_read_controller.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/sadra/Documents/Codes/CAD/ca4/Filter_read_controller.v|
 !i113 1
@@ -153,7 +153,7 @@ R7
 R8
 n@filter_read_controller
 vFilter_SP
-R10
+R0
 !i10b 1
 !s100 >BGiiK^@]f<gD:K_]b;CT2
 R1
@@ -163,13 +163,13 @@ R3
 w1735172487
 8/home/sadra/Documents/Codes/CAD/ca4/Filter_SP.v
 F/home/sadra/Documents/Codes/CAD/ca4/Filter_SP.v
-!i122 77
+!i122 159
 L0 1 43
 R5
 r1
 !s85 0
 31
-R11
+R6
 !s107 /home/sadra/Documents/Codes/CAD/ca4/Filter_SP.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/sadra/Documents/Codes/CAD/ca4/Filter_SP.v|
 !i113 1
@@ -177,7 +177,7 @@ R7
 R8
 n@filter_@s@p
 vIf_Map_generator
-R10
+R0
 !i10b 1
 !s100 R?;eHF2z4b?eEbN7^:6<j0
 R1
@@ -187,13 +187,13 @@ R3
 w1735177476
 8/home/sadra/Documents/Codes/CAD/ca4/If_Map_generator.v
 F/home/sadra/Documents/Codes/CAD/ca4/If_Map_generator.v
-!i122 78
+!i122 160
 L0 1 106
 R5
 r1
 !s85 0
 31
-R11
+R6
 !s107 /home/sadra/Documents/Codes/CAD/ca4/If_Map_generator.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/sadra/Documents/Codes/CAD/ca4/If_Map_generator.v|
 !i113 1
@@ -201,7 +201,7 @@ R7
 R8
 n@if_@map_generator
 vIF_Map_SP
-R10
+R0
 !i10b 1
 !s100 cjCHd=8P>N^Xd<9<eYdQi3
 R1
@@ -211,13 +211,13 @@ R3
 w1735172521
 8/home/sadra/Documents/Codes/CAD/ca4/IF_Map_SP.v
 F/home/sadra/Documents/Codes/CAD/ca4/IF_Map_SP.v
-!i122 79
+!i122 161
 L0 1 29
 R5
 r1
 !s85 0
 31
-R11
+R6
 !s107 /home/sadra/Documents/Codes/CAD/ca4/IF_Map_SP.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/sadra/Documents/Codes/CAD/ca4/IF_Map_SP.v|
 !i113 1
@@ -225,7 +225,7 @@ R7
 R8
 n@i@f_@map_@s@p
 vIF_read_controller
-R10
+R0
 !i10b 1
 !s100 3P^?A;hInWb^h:IA`KOz73
 R1
@@ -235,13 +235,13 @@ R3
 w1735178856
 8/home/sadra/Documents/Codes/CAD/ca4/IF_read_controller.v
 F/home/sadra/Documents/Codes/CAD/ca4/IF_read_controller.v
-!i122 80
+!i122 162
 L0 1 116
 R5
 r1
 !s85 0
 31
-R11
+R6
 !s107 /home/sadra/Documents/Codes/CAD/ca4/IF_read_controller.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/sadra/Documents/Codes/CAD/ca4/IF_read_controller.v|
 !i113 1
@@ -249,23 +249,23 @@ R7
 R8
 n@i@f_read_controller
 vMain_controller
-R10
+R0
 !i10b 1
-!s100 <]87:3GdEbb;a1^F4:RKO3
+!s100 71S_7Wb7adlJW@F9[kenU2
 R1
-I=9?71X[BXdB[b`Vf>`Rmb2
+IGHnK1A?5:jokS;zI<S>3i3
 R2
 R3
-w1735143321
+w1735223763
 8/home/sadra/Documents/Codes/CAD/ca4/Main_controller.v
 F/home/sadra/Documents/Codes/CAD/ca4/Main_controller.v
-!i122 81
-L0 1 154
+!i122 163
+L0 1 194
 R5
 r1
 !s85 0
 31
-R11
+R6
 !s107 /home/sadra/Documents/Codes/CAD/ca4/Main_controller.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/sadra/Documents/Codes/CAD/ca4/Main_controller.v|
 !i113 1
@@ -273,7 +273,7 @@ R7
 R8
 n@main_controller
 vRAM
-R10
+R0
 !i10b 1
 !s100 A6IhdMz9f^LCOSFai=Rln3
 R1
@@ -283,13 +283,13 @@ R3
 w1735168769
 8/home/sadra/Documents/Codes/CAD/ca4/Ram.v
 F/home/sadra/Documents/Codes/CAD/ca4/Ram.v
-!i122 82
+!i122 164
 L0 1 32
 R5
 r1
 !s85 0
 31
-R11
+R6
 !s107 /home/sadra/Documents/Codes/CAD/ca4/Ram.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/sadra/Documents/Codes/CAD/ca4/Ram.v|
 !i113 1
@@ -297,7 +297,7 @@ R7
 R8
 n@r@a@m
 vRegister
-R10
+R0
 !i10b 1
 !s100 KRnC2ngYE;2D]E0Y__g1b0
 R1
@@ -307,13 +307,13 @@ R3
 w1735155161
 8/home/sadra/Documents/Codes/CAD/ca4/register.v
 F/home/sadra/Documents/Codes/CAD/ca4/register.v
-!i122 83
+!i122 165
 L0 1 24
 R5
 r1
 !s85 0
 31
-R11
+R6
 !s107 /home/sadra/Documents/Codes/CAD/ca4/register.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/sadra/Documents/Codes/CAD/ca4/register.v|
 !i113 1
@@ -321,23 +321,23 @@ R7
 R8
 n@register
 vTopModule
-R10
+R0
 !i10b 1
-!s100 B7?[28KkV`jPT5]il?Kk@3
+!s100 a==<7jfUG@nEW>gk9@_5W2
 R1
-I56PFNicST1P[_N@PMO3lL3
+IbTfX_07fgmPTnQRmz8U2A1
 R2
 R3
-w1735143974
+w1735223409
 8/home/sadra/Documents/Codes/CAD/ca4/TopModule.v
 F/home/sadra/Documents/Codes/CAD/ca4/TopModule.v
-!i122 84
-R9
+!i122 166
+L0 1 164
 R5
 r1
 !s85 0
 31
-R11
+R6
 !s107 /home/sadra/Documents/Codes/CAD/ca4/TopModule.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/sadra/Documents/Codes/CAD/ca4/TopModule.v|
 !i113 1
@@ -345,7 +345,7 @@ R7
 R8
 n@top@module
 vWrite_controller
-R10
+R0
 !i10b 1
 !s100 6`N7G^90BcWkil`k4Af]61
 R1
@@ -355,13 +355,13 @@ R3
 w1735143862
 8/home/sadra/Documents/Codes/CAD/ca4/Write_controller.v
 F/home/sadra/Documents/Codes/CAD/ca4/Write_controller.v
-!i122 85
+!i122 167
 L0 1 40
 R5
 r1
 !s85 0
 31
-R11
+R6
 !s107 /home/sadra/Documents/Codes/CAD/ca4/Write_controller.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/sadra/Documents/Codes/CAD/ca4/Write_controller.v|
 !i113 1

@@ -26,10 +26,21 @@ module Main_controller (
     output reg filter_ren,
     output reg chip_en,
     output reg conv_done,
-    output reg done
+    output reg done,
+    //clear signals
+    output reg clr1,
+    output reg clr2,
+    output reg clr3,
+    output reg clr_if,
+    output reg clr_filter,
+    output reg clr_out,
+    //load signals
+    output reg ld1,
+    output reg ld2,
+    output reg ld3
 );
 
-    parameter [4:0] Idle = 5'd0 , Wait = 5'd1 , Write_sp = 5'd2 , HS1 = 5'd3 ,
+    parameter [4:0] Idle = 5'd0 , Clear = 5'd1 , Write_sp = 5'd2 , HS1 = 5'd3 ,
     HS2 = 5'd4 , Write_done = 5'd5 , Read_filter = 5'd6 , Mul = 5'd7, Add = 5'd8,
     Done = 5'd9 , Check = 5'd10 , Finish = 5'd11 , S = 5'd12 , Change_row = 5'd13,
     Stride = 5'd14 , Continue = 5'd15 , Change_filter = 5'd16;
@@ -39,8 +50,8 @@ module Main_controller (
     //determine next state
     always @(*) begin
         case (ps)
-            Idle : ns = (start) ? Wait : Idle;
-            Wait : ns = (start) ? Wait : Write_sp;
+            Idle : ns = (start) ? Clear : Idle;
+            Clear : ns = (start) ? Clear : Write_sp;
             Write_sp : begin
                 if(if_full || filter_full)
                     ns = Idle;
@@ -96,11 +107,24 @@ module Main_controller (
     //determine output signals
     always @(ps) begin
         case (ps)
+            
+            Clear : begin
+                clr1 = 1'b1;
+                clr2 = 1'b1;
+                clr3 = 1'b1;
+                clr_if = 1'b1;
+                clr_filter = 1'b1;
+                clr_out = 1'b1;
+                clr_index = 1'b1;
+                clr_filter_head = 1'b1;
+                clr_row_ptr = 1'b1;
+            end
+
             Write_sp : begin
                 en1 = 1'b1;
                 en2 = 1'b1;
             end 
-
+            
             Write_done : begin
                 ld_row_ptr = 1'b1;
                 clr_index = 1'b1;
@@ -113,6 +137,15 @@ module Main_controller (
             Read_filter : begin
                 filter_ren = 1'b1;
                 chip_en = 1'b1;
+                ld1 = 1'b1;
+            end
+
+            Mul : begin
+                ld2 = 1'b1;
+            end
+
+            Add : begin
+                ld3 = 1'b1;
             end
 
             Done : begin
@@ -147,8 +180,15 @@ module Main_controller (
                 filter_cnt_en = 1'b1;
             end
 
-            default: {en1 , en2 , ld_filter_head , ld_input_head , ld_row_ptr , clr_index , clr_filter_head ,
-            sel , filter_cnt_en , index_cnt_en , chip_en , conv_done , done , row_ptr_cnt_en , filter_ren} = 15'b0;
+            default: {en1 , en2 , ld_row_ptr , clr_index , clr_filter_head , ld_filter_head , index_cnt_en , row_ptr_cnt_en , sel ,
+            filter_cnt_en , ld_input_head , clr_row_ptr , filter_ren , chip_en , conv_done , done , clr1 , clr2 , clr3 , clr_if , clr_filter , clr_out} = 23'b0;
         endcase
+    end
+
+    always @(posedge clk or posedge rst) begin
+        if(rst)
+            ps <= Idle;
+        else
+            ps <= ns;
     end
 endmodule
