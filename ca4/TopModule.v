@@ -9,17 +9,16 @@ module TopModule #(
     parameter STRIDE_SIZE = 2,
     parameter MAX_ROW = 2,
 
-    parameter OUT_PAR_READ = OUT_HEIGHT,
-    parameter IF_PAR_WRITE = IF_HEIGHT,
-    parameter FILTER_PAR_WRITE = FILTER_HEIGHT
-) 
+    parameter OUT_PAR_READ = 16,
+    parameter IF_PAR_WRITE = 16,
+    parameter FILTER_PAR_WRITE = 16
+)
 (
   input clk,
   input rst,
   input start,
   input ren,
   input [STRIDE_SIZE - 1:0] stride_in,
-  input [FILTER_SIZE - 1:0] filter_size,
   input [(IF_WIDTH * IF_PAR_WRITE)-1:0] input_in,
   input [(FILTER_WIDTH * FILTER_PAR_WRITE)-1:0] filter_in,
   output [(OUT_WIDTH * OUT_PAR_READ)-1:0] out,
@@ -130,7 +129,6 @@ module TopModule #(
     //address generators
     .stride_in(stride_in),
     .ld_row_ptr(ld_row_ptr),
-    .filter_size(filter_size),
     .sel(sel),
     .ld_input_head(ld_input_head),
     .row_ptr_cnt_en(row_ptr_cnt_en),

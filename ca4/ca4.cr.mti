@@ -12,13 +12,6 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 
 Top level modules:
 	RAM
 
-} {} {}} /home/sadra/Documents/Codes/CAD/ca4/TopModule.v {1 {vlog -work work -stats=none /home/sadra/Documents/Codes/CAD/ca4/TopModule.v
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module TopModule
-
-Top level modules:
-	TopModule
-
 } {} {}} /home/sadra/Documents/Codes/CAD/ca4/buffer.v {1 {vlog -work work -stats=none /home/sadra/Documents/Codes/CAD/ca4/buffer.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
 -- Compiling module Buffer
@@ -60,6 +53,13 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 
 
 Top level modules:
 	datapath
+
+} {} {}} /home/sadra/Documents/Codes/CAD/ca4/Main_controller.v {1 {vlog -work work -stats=none /home/sadra/Documents/Codes/CAD/ca4/Main_controller.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module Main_controller
+
+Top level modules:
+	Main_controller
 
 } {} {}} /home/sadra/Documents/Codes/CAD/ca4/Counter.v {1 {vlog -work work -stats=none /home/sadra/Documents/Codes/CAD/ca4/Counter.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020

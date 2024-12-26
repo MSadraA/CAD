@@ -1,7 +1,6 @@
 module datapath #(
     parameter OUT_WIDTH = 16,
     parameter OUT_HEIGHT = 12,
-    parameter OUT_PAR_READ = OUT_HEIGHT,
     parameter IF_WIDTH = 16,
     parameter IF_HEIGHT = 12,
     parameter FILTER_WIDTH = 16,
@@ -10,9 +9,10 @@ module datapath #(
     parameter STRIDE_SIZE = 2,
     parameter MAX_ROW = 2,
 
-    parameter IF_PAR_WRITE = IF_HEIGHT,
-    parameter FILTER_PAR_WRITE = FILTER_HEIGHT,
-    //local parameters
+    parameter OUT_PAR_READ = 16,
+    parameter IF_PAR_WRITE = 16,
+    parameter FILTER_PAR_WRITE = 16,
+   
     parameter IF_ADDRESS_WIDTH =  (IF_HEIGHT > 1) ? $clog2(IF_HEIGHT) : 1,
     parameter FILTER_ADDRESS_WIDTH = (FILTER_HEIGHT > 1) ? $clog2(FILTER_HEIGHT) : 1,
 
@@ -20,7 +20,8 @@ module datapath #(
     parameter INDEX_WIDTH = (FILTER_SIZE > 1) ? $clog2(FILTER_SIZE) : 1,
 
     parameter OUT_ADDRESS_WIDTH = (OUT_HEIGHT > 1) ? $clog2(OUT_HEIGHT) : 1
-) (
+) 
+(
     input out_buf_ren,
     input clr_out,
     input clk,
@@ -34,7 +35,6 @@ module datapath #(
     //address generators
     input [STRIDE_SIZE - 1:0] stride_in,
     input ld_row_ptr,
-    input [FILTER_SIZE - 1:0] filter_size,
     input sel,
     input ld_input_head,
     input row_ptr_cnt_en,
@@ -173,7 +173,6 @@ module datapath #(
         .offset(offset),
         .start_in(if_write_cntr_out),
         .end_in(if_write_cntr_out),
-        .filter_size(filter_size),
         .ld_start(ld_start),
         .ld_end(ld_end),
         .row_ptr_cnt_en(If_row_ptr_cnt_en | row_ptr_cnt_en),
@@ -187,7 +186,7 @@ module datapath #(
 
     //filter part
 
-    assign res = (filter_write_cntr_out % filter_size == 0) ? 1'b1 : 1'b0;
+    assign res = (filter_write_cntr_out % FILTER_SIZE == 0) ? 1'b1 : 1'b0;
 
     Fifo_buffer #(
         .DATA_WIDTH(FILTER_WIDTH),
@@ -250,7 +249,6 @@ module datapath #(
 
     Filter_generator #(
         .FILTER_SIZE(FILTER_SIZE),
-        .ADD_WIDTH(FILTER_ADDRESS_WIDTH),
         .WIDTH(FILTER_WIDTH),
         .HEIGHT(FILTER_HEIGHT)
     )
@@ -262,8 +260,8 @@ module datapath #(
         .clr_filter_head(clr_filter_head),
         .index_cnt_en(index_cnt_en),
         .clr_index(clr_index),
-        .filter_size(filter_size),
         .filter_raddr(filter_raddr),
+        .index_counter_out(offset),
         .filter_end(filter_end),
         .finish_filter(finish_filter)
     );
